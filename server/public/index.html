@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Web Slicer</title>
+
+    <!--libraries-->
+    <script src="gcode_viewer/lib/modernizr.custom.93389.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="gcode_viewer/lib/sugar-1.2.4.min.js"></script>
+    <script src="gcode_viewer/lib/Three.js"></script>
+
+    <!--css-->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/custom.css"/>
+
+    <!-- MY SCRIPTS -->
+    <!--test stuff-->
+    <script src="test.js"></script>
+    <script src="testController.js"></script>
+
+    <!-- gcode viewer -->
+    <script src="gcode_viewer/gcode-parser.js"></script>
+    <script src="gcode_viewer/gcode-model.js"></script>
+    <script src="gcode_viewer/renderer.js"></script>
+    <script src="gcode_viewer/ui.js"></script>
+
+</head>
+<body ng-app="WebSlicer">
+
+<div class="container" ng-controller="TestController">
+    <h1>{{title}}</h1>
+
+    <div class="row">
+        <div class="col-lg-4">
+
+            <!--PRINTER STATUS PANEL-->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Get Printer Status</h4>
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="ipAddress">OctoPrint IP Address</label>
+                            <input ng-model="address" type="text" class="form-control" id="ipAddress"
+                                   placeholder="OctoPrint IP Address">
+                        </div>
+                        <div class="form-group">
+                            <label for="port">Port</label>
+                            <input ng-model="port" type="number" class="form-control" id="port"
+                                   placeholder="port (default 5000)">
+                        </div>
+                        <div class="form-group">
+                            <label for="apiKey">API Key</label>
+                            <input ng-model="apiKey" type="text" class="form-control" id="apiKey" placeholder="API Key">
+                        </div>
+                        <button ng-click="ping()" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+            <!--TEMPERATURE-->
+            <div class="panel panel-data" ng-if="dataHere">
+                <h4><strong>Nozzle Temp:</strong> {{data.temperature.tool0.actual}} &#8451;</h4>
+                <h4><strong>Bed Temp:</strong> {{data.temperature.bed.actual}} &#8451;</h4>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
