@@ -21,22 +21,26 @@
         };
     }]);
 
-    app.service('fileUpload', ['$http', function ($http) {
-        this.uploadFileToUrl = function (file, uploadUrl) {
-            var fd = new FormData();
-            fd.append('file', file);
-            $http.post(uploadUrl, fd, {
-                transformRequest: angular.identity,
-                headers: {'Content-Type': undefined}
-            })
-                .success(function () {
-                })
-                .error(function () {
-                });
-        }
-    }]);
+    //app.service('fileUpload', ['$http', function ($http) {
+    //    this.uploadFileToUrl = function (file, uploadUrl) {
+    //        var fd = new FormData();
+    //        fd.append('file', file);
+    //        $http.post(uploadUrl, fd, {
+    //                transformRequest: angular.identity,
+    //                headers: {'Content-Type': undefined}
+    //            })
+    //            .success(function (response) {
+    //                //console.log(response);
+    //                var fileId = response.fileId;
+    //                console.log(fileId);
+    //                return fileId;
+    //            })
+    //            .error(function () {
+    //            });
+    //    }
+    //}]);
 
-    app.controller("SettingsController", ["$http", "$scope", "fileUpload", function ($http, $scope, fileUpload) {
+    app.controller("SettingsController", ["$http", "$scope", function ($http, $scope) {
         // environment vars
         var baseUrl = "http://localhost:8080/WebSlicer/slicer";
         $scope.title = "Web Slicer";
@@ -98,20 +102,12 @@
                 },
                 data: buildSettingsObject()
             }).then(function successCallback(response) {
-                console.log(response);
-                $scope.data = response.data;
-                $scope.dataHere = true;
+                //console.log(response);
+                $scope.settingsFileId = response.data.fileId;
+                console.log($scope.settingsFileId);
             }, function errorCallback(response) {
                 console.error(response);
             });
-        };
-
-        $scope.uploadFile = function () {
-            var file = $scope.myFile;
-            console.log('file is ');
-            console.dir(file);
-            var uploadUrl = baseUrl + "/importStl";
-            fileUpload.uploadFileToUrl(file, uploadUrl);
         };
 
         function buildSettingsObject() {
@@ -142,6 +138,73 @@
                     "machine_end_gcode": $scope.machine_end_gcode
                 }
             };
+        }
+
+        /**
+         * Fire off a file upload of a MIME type model file.
+         */
+        $scope.uploadFile = function () {
+            var file = $scope.myFile;
+            console.log('file is ');
+            console.dir(file);
+            var uploadUrl = baseUrl + "/importStl";
+            var fd = new FormData();
+
+            fd.append('file', file);
+            $http.post(uploadUrl, fd, {
+                    transformRequest: angular.identity,
+                    headers: {'Content-Type': undefined}
+                })
+                .success(function (response) {
+                    //console.log(response);
+                    $scope.modelFileId = response.fileId;
+                    console.log($scope.modelFileId);
+                })
+                .error(function () {
+                });
+
+
+            //$scope.modelFileId = fileUpload.uploadFileToUrl(file, uploadUrl);
+        };
+
+        /**
+         * The main slice function. This will only operate if the client has both uploaded a settings file and a model file.
+         * Both of these files will be given an id that the client must track in order to slice a file properly.
+         *
+         * @param modelId
+         * @param settingsId
+         */
+        $scope.slice = function (modelId, settingsId) {
+            if (modelId || settingsId) {
+
+                // build data object to send from args
+                var dataObject = {};
+                dataObject.modelId = modelId;
+                dataObject.settingsId = settingsId;
+                console.log(dataObject);
+
+                // send slice request
+                $http({
+                    method: 'POST',
+                    url: baseUrl + "/slice",
+                    //headers: {
+                        //'Content-Type': 'application/json'
+                    //},
+                    data: dataObject
+                }).then(function successCallback(response) {
+
+                    // capture our gcode as a response.
+                    console.log(response);
+                    $scope.gcode = response.data;
+                    console.log($scope.gcode);
+
+                }, function errorCallback(response) {
+                    console.error(response);
+                });
+
+            } else {
+                console.error("model or settings id missing");
+            }
         }
 
     }]);

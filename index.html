@@ -35,21 +35,26 @@
     <h1>{{title}}</h1>
 
     <div class="row">
+        <!--CONTROLS-->
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4>Upload Model File</h4>
+                    <h4>Controls</h4>
                 </div>
                 <div class="panel-body">
                     <input type="file" file-model="myFile"/>
                     <button class="btn btn-default" ng-click="uploadFile()">Upload Model</button>
+                    <button class="btn btn-default" ng-click="importSettings()">Upload Settings</button>
+                    <button class="btn btn-primary" ng-click="slice(modelFileId,settingsFileId)">
+                        Slice...
+                    </button>
                 </div>
             </div>
         </div>
 
         <div class="col-lg-4">
 
-            <!--PRINTER STATUS PANEL-->
+            <!--OctoPrint STATUS PANEL-->
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4>Connect OctoPrint</h4>
@@ -86,7 +91,7 @@
     </div>
     <div class="row">
 
-
+        <!--SETTINGS PANEL-->
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -201,10 +206,18 @@
                             <textarea ng-model="machine_end_gcode.default" rows="10" class="form-control"
                                       id="machine_end_gcode"></textarea>
                         </div>
-                        <button class="btn btn-default" ng-click="importSettings()">Upload Settings</button>
+
 
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label for="gcode">gcode output</label>
+                <textarea id="gcode" cols="30" rows="100" ng-model="gcode.gcode" class="form-control"></textarea>
             </div>
         </div>
     </div>
