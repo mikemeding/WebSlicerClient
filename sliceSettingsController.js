@@ -21,25 +21,6 @@
         };
     }]);
 
-    //app.service('fileUpload', ['$http', function ($http) {
-    //    this.uploadFileToUrl = function (file, uploadUrl) {
-    //        var fd = new FormData();
-    //        fd.append('file', file);
-    //        $http.post(uploadUrl, fd, {
-    //                transformRequest: angular.identity,
-    //                headers: {'Content-Type': undefined}
-    //            })
-    //            .success(function (response) {
-    //                //console.log(response);
-    //                var fileId = response.fileId;
-    //                console.log(fileId);
-    //                return fileId;
-    //            })
-    //            .error(function () {
-    //            });
-    //    }
-    //}]);
-
     app.controller("SettingsController", ["$http", "$scope", function ($http, $scope) {
         // environment vars
         var baseUrl = "http://localhost:8080/WebSlicer/slicer";

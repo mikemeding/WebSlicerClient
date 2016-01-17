@@ -5,57 +5,66 @@
     <title>Web Slicer</title>
 
     <!--libraries-->
-    <!--<script src="gcode_viewer/lib/modernizr.custom.93389.js"></script>-->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <!--<script src="gcode_viewer/lib/sugar-1.2.4.min.js"></script>-->
-    <!--<script src="gcode_viewer/lib/Three.js"></script>-->
 
     <!--css-->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-cosmo.css">
     <link rel="stylesheet" href="css/custom.css"/>
 
     <!-- MY SCRIPTS -->
-    <!--test stuff-->
     <script src="app.js"></script>
     <script src="sliceSettingsController.js"></script>
 
-    <!-- gcode viewer -->
-    <!--<script src="gcode_viewer/gcode-parser.js"></script>-->
-    <!--<script src="gcode_viewer/gcode-model.js"></script>-->
-    <!--<script src="gcode_viewer/renderer.js"></script>-->
-    <!--<script src="gcode_viewer/ui.js"></script>-->
 
 </head>
 <body ng-app="WebSlicer">
 
 <div class="container" ng-controller="SettingsController">
-    <h1>{{title}}</h1>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <h1 class="title"><img src="img/logo22.svg" width="150px">{{title}}</h1>
+        </div>
+    </div>
 
     <div class="row">
+        
         <!--CONTROLS-->
         <div class="col-lg-6">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4>Controls</h4>
+                    <h4>Slicer Controls</h4>
                 </div>
                 <div class="panel-body">
-                    <input type="file" file-model="myFile"/>
-                    <button class="btn btn-default" ng-click="uploadFile()">Upload Model</button>
-                    <button class="btn btn-default" ng-click="importSettings()">Upload Settings</button>
-                    <button class="btn btn-primary" ng-click="slice(modelFileId,settingsFileId)">
-                        Slice...
-                    </button>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li role="presentation">
+                            <span class="btn btn-default btn-file">
+                                Browse Files<input class="btn btn-file" type="file" file-model="myFile"/>
+                            </span>
+                        </li>
+                        <li role="presentation">
+                            <button class="btn btn-default" ng-click="uploadFile()">Upload Model</button>
+                        </li>
+                        <li role="presentation">
+                            <button class="btn btn-default" ng-click="importSettings()">Upload Settings</button>
+                        </li>
+                        <li role="presentation">
+                            <button class="btn btn-primary" ng-click="slice(modelFileId,settingsFileId)">
+                                Slice...
+                            </button>
+                        </li>
+                    </ul>
+
                 </div>
             </div>
         </div>
 
-        <div class="col-lg-4">
+        <div class="col-lg-6">
 
             <!--OctoPrint STATUS PANEL-->
-            <div class="panel panel-default">
+            <div class="panel panel-success">
                 <div class="panel-heading">
                     <h4>Connect OctoPrint</h4>
                 </div>
@@ -89,8 +98,8 @@
         </div>
 
     </div>
-    <div class="row">
 
+    <div class="row">
         <!--SETTINGS PANEL-->
         <div class="col-lg-12">
             <div class="panel panel-default">
