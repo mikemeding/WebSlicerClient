@@ -28,9 +28,27 @@
             <h1 class="title"><img src="img/logo22.svg" width="150px">{{title}}</h1>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Login</h4>
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="clientId">Client ID</label>
+                            <input class="form-control" type="text" id="clientId" ng-model="clientId">
+                            <button class="btn btn-warning" ng-click="generateClientId()">generate new id</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="row">
-        
+
         <!--CONTROLS-->
         <div class="col-lg-6">
             <div class="panel panel-primary">
@@ -39,6 +57,8 @@
                 </div>
                 <div class="panel-body">
                     <ul class="nav nav-pills nav-stacked">
+
+                        <!--file chooser-->
                         <li role="presentation">
                             <span class="btn btn-default btn-file">
                                 Browse Files<input class="btn btn-file" type="file" file-model="myFile"/>
@@ -47,11 +67,28 @@
                         <li role="presentation">
                             <button class="btn btn-default" ng-click="uploadFile()">Upload Model</button>
                         </li>
+
+                        <!--current file list-->
+                        <li role="presentation">
+                            <ul class="list-group">
+                                <p> Current working model ID: {{modelFileId}}</p>
+                                <li class="list-group-item" ng-click="changeWorkingFile(key)"
+                                    ng-repeat="(key, value) in modelFiles">
+                                    <p class="text-center">{{value}}</p>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation">
+                            <button class="btn btn-primary" ng-click="getFileList()">get files</button>
+                        </li>
+
+                        <!--settings-->
                         <li role="presentation">
                             <button class="btn btn-default" ng-click="importSettings()">Upload Settings</button>
                         </li>
                         <li role="presentation">
-                            <button class="btn btn-primary" ng-click="slice(modelFileId,settingsFileId)">
+                            <button class="btn btn-primary" ng-click="slice(modelFileId)">
                                 Slice...
                             </button>
                         </li>
@@ -101,7 +138,7 @@
 
     <div class="row">
         <!--SETTINGS PANEL-->
-        <div class="col-lg-12">
+        <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4>Printer Settings</h4>
@@ -221,12 +258,14 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="form-group">
-                <label for="gcode">gcode output</label>
-                <textarea id="gcode" cols="30" rows="100" ng-model="gcode.gcode" class="form-control"></textarea>
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Gcode Output Window</h4>
+                </div>
+                <div class="panel-body">
+                    <textarea cols="30" rows="100" ng-model="gcode.gcode" class="form-control"></textarea>
+                </div>
             </div>
         </div>
     </div>

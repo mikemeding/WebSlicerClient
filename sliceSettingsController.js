@@ -26,6 +26,8 @@
         var baseUrl = "http://localhost:8080/WebSlicer/slicer";
         $scope.title = "Web Slicer";
         $scope.dataHere = false;
+        $scope.clientId = "";
+        $scope.modelFiles = {};
 
         // defaults for settings (until i can get this from profile files)
         $scope.name = "default name";
@@ -72,20 +74,65 @@
         };
 
         /**
+         * Generate a new client id and layout all of the files for this new client on the server
+         */
+        $scope.generateClientId = function () {
+            $http({
+                method: 'POST',
+                url: baseUrl + "/setupClient"
+            }).then(function successCallback(response) {
+                console.log(response);
+                $scope.clientId = response.data.clientId;
+            }, function errorCallback(response) {
+                console.error(response);
+            });
+        };
+
+        /**
+         * Get the list of flies associated with a client.
+         */
+        $scope.getFileList = function () {
+            $http({
+                method: 'GET',
+                url: baseUrl + "/getFiles/" + $scope.clientId
+            }).then(function successCallback(response) {
+                console.log(response);
+                $scope.modelFiles = response.data;
+
+                // print out all of the files
+                for (var key in $scope.modelFiles) {
+                    if ($scope.modelFiles.hasOwnProperty(key)) {
+                        console.log(key + " -> " + $scope.modelFiles[key]);
+                    }
+                }
+            }, function errorCallback(response) {
+                console.error(response);
+            });
+        };
+
+        /**
+         * change the working file that we are slicing with.
+         */
+        $scope.changeWorkingFile = function(modelId){
+            console.log(modelId);
+            $scope.modelFileId = modelId;
+        };
+
+        /**
          * Upload the settings as a formatted JSONObject to the server for slicing
          */
         $scope.importSettings = function () {
             $http({
                 method: 'POST',
-                url: baseUrl + "/importSettings",
+                url: baseUrl + "/importSettings/" + $scope.clientId,
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 data: buildSettingsObject()
             }).then(function successCallback(response) {
                 //console.log(response);
-                $scope.settingsFileId = response.data.fileId;
-                console.log($scope.settingsFileId);
+                //$scope.settingsFileId = response.data.fileId;
+                //console.log($scope.settingsFileId);
             }, function errorCallback(response) {
                 console.error(response);
             });
@@ -99,7 +146,7 @@
                 "author": "Other",
                 "icon": "icon_ultimaker2.png",
                 "platform": "prusai3_platform.stl",
-                "inherits": "fdmprinter.json",
+                "inherits": "fdmprinter.json", // this must come from a symbolic link in the directory.
                 "overrides": {
                     "machine_heated_bed": {"default": $scope.machine_heated_bed},
                     "machine_width": {"default": $scope.machine_width},
@@ -128,7 +175,7 @@
             var file = $scope.myFile;
             console.log('file is ');
             console.dir(file);
-            var uploadUrl = baseUrl + "/importStl";
+            var uploadUrl = baseUrl + "/importStl/" + $scope.clientId;
             var fd = new FormData();
 
             fd.append('file', file);
@@ -155,34 +202,20 @@
          * @param modelId
          * @param settingsId
          */
-        $scope.slice = function (modelId, settingsId) {
-            if (modelId || settingsId) {
-
-                // build data object to send from args
-                var dataObject = {};
-                dataObject.modelId = modelId;
-                dataObject.settingsId = settingsId;
-                console.log(dataObject);
-
+        $scope.slice = function (modelId) {
+            if (modelId) {
                 // send slice request
                 $http({
                     method: 'POST',
-                    url: baseUrl + "/slice",
-                    //headers: {
-                        //'Content-Type': 'application/json'
-                    //},
-                    data: dataObject
+                    url: baseUrl + "/slice/" + $scope.clientId + "/" + modelId
                 }).then(function successCallback(response) {
-
                     // capture our gcode as a response.
                     console.log(response);
                     $scope.gcode = response.data;
-                    console.log($scope.gcode);
 
                 }, function errorCallback(response) {
                     console.error(response);
                 });
-
             } else {
                 console.error("model or settings id missing");
             }
