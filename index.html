@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Web Slicer</title>
 
+    <link rel="icon" type="image/png" href="img/logo22-plain.png"/>
+
     <!--libraries-->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
@@ -262,6 +264,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4>Gcode Output Window</h4>
+                    <a download="output.gcode" ng-href="{{gcodeDownload}}">download gcode</a>
                 </div>
                 <div class="panel-body">
                     <textarea cols="30" rows="100" ng-model="gcode.gcode" class="form-control"></textarea>

@@ -28,6 +28,12 @@
         $scope.dataHere = false;
         $scope.clientId = "";
         $scope.modelFiles = {};
+        $scope.gcode = {"gcode": ""};
+
+        // make gcode available for download
+        var blob = new Blob([$scope.gcode.gcode], {type: 'text/plain'});
+        $scope.gcodeDownload = (window.URL || window.webkitURL).createObjectURL(blob);
+
 
         // defaults for settings (until i can get this from profile files)
         $scope.name = "default name";
@@ -113,7 +119,7 @@
         /**
          * change the working file that we are slicing with.
          */
-        $scope.changeWorkingFile = function(modelId){
+        $scope.changeWorkingFile = function (modelId) {
             console.log(modelId);
             $scope.modelFileId = modelId;
         };
@@ -130,9 +136,7 @@
                 },
                 data: buildSettingsObject()
             }).then(function successCallback(response) {
-                //console.log(response);
-                //$scope.settingsFileId = response.data.fileId;
-                //console.log($scope.settingsFileId);
+                console.log(response);
             }, function errorCallback(response) {
                 console.error(response);
             });
