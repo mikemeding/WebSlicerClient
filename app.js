@@ -4,7 +4,7 @@
 (function () {
     var app = angular.module("WebSlicer", ["ui.router"]);
 
-    app.config(function appConfig($stateProvider, $urlRouterProvider) {
+    app.config(["$stateProvider", "$urlRouterProvider", "$controllerProvider", "$compileProvider", function appConfig($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvider) {
         // default route
         $urlRouterProvider.otherwise("home");
 
@@ -16,10 +16,11 @@
                 controller: "TestController"
             });
 
-    });
+        // controller config
+        $controllerProvider.allowGlobals();
 
-    app.config(['$compileProvider',
-        function ($compileProvider) {
-            $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|file|blob):/);
-        }]);
+        // post compile config
+        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|file|blob):/);
+    }]);
+
 })();

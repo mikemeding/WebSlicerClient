@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="WebSlicer">
 <head lang="en">
     <meta charset="UTF-8">
     <title>Web Slicer</title>
@@ -18,16 +18,21 @@
 
     <!-- MY SCRIPTS -->
     <script src="app.js"></script>
-    <script src="sliceSettingsController.js"></script>
+    <script src="oldSettingsController.js"></script>
 
+    <!--FACTORIES-->
+    <script src="model/octoprint/octoprintFactory.js"></script>
+
+    <!--CONTROLLERS-->
     <script src="model/profile/settingsController.js"></script>
+    <script src="model/octoprint/octoprintController.js"></script>
 
 
 </head>
-<body ng-app="WebSlicer">
+<body>
 
-<div class="container">
-    <div class="row">
+<div class="container" ng-controller="OldSettingsController">
+    <div class="row" >
         <div class="col-lg-6 col-lg-offset-3">
             <h1 class="title"><img src="img/logo22.svg" width="150px">{{title}}</h1>
         </div>
@@ -51,10 +56,10 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" >
 
         <!--CONTROLS-->
-        <div class="col-lg-6">
+        <div class="col-lg-6" >
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4>Slicer Controls</h4>
@@ -111,21 +116,21 @@
                 </div>
                 <div class="panel-body">
                     <form>
-                        <div class="form-group">
-                            <label for="ipAddress">OctoPrint IP Address</label>
-                            <input ng-model="address" type="text" class="form-control" id="ipAddress"
-                                   placeholder="OctoPrint IP Address">
-                        </div>
+                        <!--<div class="form-group">-->
+                            <!--<label for="ipAddress">OctoPrint IP Address</label>-->
+                            <!--<input ng-model="address" type="text" class="form-control" id="ipAddress"-->
+                                   <!--placeholder="OctoPrint IP Address">-->
+                        <!--</div>-->
                         <!--<div class="form-group">-->
                         <!--<label for="port">Port</label>-->
                         <!--<input ng-model="port" type="number" class="form-control" id="port"-->
                         <!--placeholder="port (default 5000)">-->
                         <!--</div>-->
-                        <div class="form-group">
-                            <label for="apiKey">API Key</label>
-                            <input ng-model="apiKey" type="text" class="form-control" id="apiKey" placeholder="API Key">
-                        </div>
-                        <button ng-click="pingOctoPrint()" class="btn btn-default">Submit</button>
+                        <!--<div class="form-group">-->
+                            <!--<label for="apiKey">API Key</label>-->
+                            <!--<input ng-model="apiKey" type="text" class="form-control" id="apiKey" placeholder="API Key">-->
+                        <!--</div>-->
+                        <!--<button ng-click="pingOctoPrint()" class="btn btn-default">Submit</button>-->
                     </form>
                 </div>
             </div>
@@ -140,10 +145,10 @@
 
     </div>
 
-    <div class="row">
+    <div class="row" >
         <!--SETTINGS PANEL-->
         <div class="col-lg-6">
-            <div class="panel panel-default" ng-controller="SettingsController">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4>Printer Settings</h4>
                 </div>
