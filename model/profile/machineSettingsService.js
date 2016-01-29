@@ -2,7 +2,7 @@
  * Created by mike on 1/28/16.
  */
 (function () {
-    var app = angular.module("WebSlicer", []);
+    var app = angular.module("WebSlicer");
     app.service("MachineSettingsService", ["$rootScope", function ($rootScope) {
 
         var cache = {};

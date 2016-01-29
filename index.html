@@ -18,20 +18,21 @@
 
     <!-- MY SCRIPTS -->
     <script src="app.js"></script>
-    <script src="oldSettingsController.js"></script>
 
-    <!--FACTORIES-->
-    <script src="model/octoprint/octoprintFactory.js"></script>
-
-    <!--CONTROLLERS-->
+    <!--SETTINGS-->
     <script src="model/profile/settingsController.js"></script>
+
+    <!--OCTOPRINT-->
+    <script src="model/octoprint/octoprintDirective.js"></script>
     <script src="model/octoprint/octoprintController.js"></script>
 
+
+    <script src="deprecated.js"></script>
 
 </head>
 <body>
 
-<div class="container" ng-controller="OldSettingsController">
+<div class="container" ng-controller="Deprecated">
     <div class="row" >
         <div class="col-lg-6 col-lg-offset-3">
             <h1 class="title"><img src="img/logo22.svg" width="150px">{{title}}</h1>
@@ -108,39 +109,7 @@
         </div>
 
         <div class="col-lg-6">
-
-            <!--OctoPrint STATUS PANEL-->
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h4>Connect OctoPrint</h4>
-                </div>
-                <div class="panel-body">
-                    <form>
-                        <!--<div class="form-group">-->
-                            <!--<label for="ipAddress">OctoPrint IP Address</label>-->
-                            <!--<input ng-model="address" type="text" class="form-control" id="ipAddress"-->
-                                   <!--placeholder="OctoPrint IP Address">-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                        <!--<label for="port">Port</label>-->
-                        <!--<input ng-model="port" type="number" class="form-control" id="port"-->
-                        <!--placeholder="port (default 5000)">-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                            <!--<label for="apiKey">API Key</label>-->
-                            <!--<input ng-model="apiKey" type="text" class="form-control" id="apiKey" placeholder="API Key">-->
-                        <!--</div>-->
-                        <!--<button ng-click="pingOctoPrint()" class="btn btn-default">Submit</button>-->
-                    </form>
-                </div>
-            </div>
-
-            <!--TEMPERATURE-->
-            <div class="panel panel-data" ng-if="dataHere">
-                <h4><strong>Nozzle Temp:</strong> {{data.temperature.tool0.actual}} &#8451;</h4>
-                <h4><strong>Bed Temp:</strong> {{data.temperature.bed.actual}} &#8451;</h4>
-            </div>
-
+            <octoprint></octoprint>
         </div>
 
     </div>

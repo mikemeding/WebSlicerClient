@@ -1,8 +1,9 @@
 /**
- * Created by mike on 1/28/16.
+ * Created by mike on 9/25/15.
  */
 (function () {
-    var app = angular.module("WebSlicer", []);
+    var app = angular.module("WebSlicer");
+
 
     app.controller("SettingsController", ["$http", "$scope", function ($http, $scope) {
 
@@ -16,5 +17,9 @@
 
 
     }]);
+
+
+
+
 
 })();

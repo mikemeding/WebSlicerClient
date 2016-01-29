@@ -2,34 +2,60 @@
  * Created by mike on 1/28/16.
  */
 (function () {
-    var app = angular.module("WebSlicer", []);
-    app.factory("OctoprintFactory", function () {
-        return {
-            /**
-             * Settings object should look like this,
-             * {"url":"","port":"","apiKey":""}
-             *
-             * call get defaults with an api key for another example
-             * @param octoprintSettings
-             * @returns {string}
-             */
-            ping: function (octoprintSettings) {
-                console.log(octoprintSettings);
-                return "header goes here";
-            },
+    var app = angular.module("WebSlicer");
+    app.controller("OctoprintController", ["$http", "$scope", function ($http, $scope) {
 
-            /**
-             * Get the default connection params for OctoPi
-             *
-             * @param apiKey The OctoPrint api key.
-             * @returns {{url: string, port: string, apiKey: string}}
-             */
-            getDefaults: function (apiKey) {
-                return {"url": "octopi.local", "port": "", "apiKey": apiKey};
+        $scope.url = "";
+        $scope.port = "";
+        $scope.apiKey = "";
+        $scope.otherUrl = false;
+
+        /**
+         * Settings object should look like this,
+         * {"url":"","port":"","apiKey":""}
+         *
+         * call get defaults with an api key for another example
+         * @returns {string}
+         */
+        $scope.pingOctoprint = function () {
+            // figure out if url requires port
+            var address = getDefault();
+            if ($scope.port && $scope.url !== address) {
+                address = $scope.url + ":" + $scope.port;
+            } else {
+                if ($scope.url) {
+                    address = $scope.url + ":5000";
+
+                }
             }
-        }
-    });
-    app.controller("OctoprintController", ["$http", "$scope", "OctoprintFactory", function ($http, $scope, OctoprintFactory) {
-        console.log(OctoprintFactory.getDefaults("someapikey"));
+
+            console.log(address);
+            console.log("API Key: " + $scope.apiKey);
+            //$http({
+            //    method: 'GET',
+            //    url: 'http://' + $scope.url + '/api/printer',
+            //    headers: {
+            //        'Content-Type': 'application/json',
+            //        'x-api-key': apiKey
+            //    }
+            //}).then(function successCallback(response) {
+            //    console.log(response);
+            //    $scope.data = response.data;
+            //    $scope.dataHere = true;
+            //}, function errorCallback(response) {
+            //    console.error(response);
+            //});
+        };
+
+        /**
+         * Get the default connection params for OctoPi
+         *
+         * @param apiKey The OctoPrint api key.
+         * @returns {{url: string, port: string, apiKey: string}}
+         */
+        function getDefault() {
+            return "octopi.local";
+        };
+
     }]);
 })();

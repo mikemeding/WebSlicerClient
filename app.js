@@ -12,8 +12,7 @@
         $stateProvider
             .state("home", {
                 url: "/home",
-                templateUrl: "public/index.html",
-                controller: "TestController"
+                templateUrl: "public/index.html"
             });
 
         // controller config

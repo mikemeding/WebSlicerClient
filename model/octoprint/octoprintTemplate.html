@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!--OctoPrint STATUS PANEL-->
+<div ng-controller="OctoprintController">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h4>Connect OctoPrint</h4>
+        </div>
+        <div class="panel-body">
+            <form>
+                <div ng-show="otherUrl">
+                    <div class="form-group">
+                        <label for="ipAddress">OctoPrint IP Address{{url}}</label>
+                        <input ng-model="url" type="text" class="form-control" id="ipAddress"
+                               placeholder="OctoPrint IP Address">
+                    </div>
+                    <div class="form-group">
+                        <label for="port">Port{{port}}</label>
+                        <input ng-model="port" type="number" class="form-control" id="port"
+                               placeholder="port (default 5000)">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="apiKey">API Key {{apiKey}}</label>
+                    <input ng-model="apiKey" type="text" class="form-control" id="apiKey" placeholder="API Key">
+                </div>
+                <button ng-click="pingOctoprint()" class="btn btn-default">Connect</button>
+                <button ng-click="otherUrl = !otherUrl" class="btn btn-primary">Custom Address?</button>
+            </form>
+        </div>
+    </div>
 
-</body>
-</html>
+    <!--TEMPERATURE-->
+    <!--<div class="panel panel-data" ng-if="dataHere">-->
+        <!--<h4><strong>Nozzle Temp:</strong> {{data.temperature.tool0.actual}} &#8451;</h4>-->
+        <!--<h4><strong>Bed Temp:</strong> {{data.temperature.bed.actual}} &#8451;</h4>-->
+    <!--</div>-->
+</div>

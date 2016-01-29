@@ -2,7 +2,7 @@
  * Created by mike on 9/25/15.
  */
 (function () {
-    var app = angular.module("WebSlicer", []);
+    var app = angular.module("WebSlicer");
 
     //TODO: split directive and service to their own file.
     app.directive('fileModel', ['$parse', function ($parse) {
@@ -21,9 +21,10 @@
         };
     }]);
 
-    app.controller("OldSettingsController", ["$http", "$scope", OldSettingsController]);
 
-    function OldSettingsController($http, $scope) {
+    app.controller("Deprecated", ["$http", "$scope", Deprecated]);
+
+    function Deprecated($http, $scope) {
         // environment vars
         var baseUrl = "http://localhost:8080/WebSlicer/slicer";
         $scope.title = "Web Slicer";
@@ -59,26 +60,6 @@
             "default": "M104 S0 ;extruder heater off\nM140 S0 ;heated bed heater off (if you have it)\nG91 ;relative positioning\nG1 E-1 F300  ;retract the filament a bit before lifting the nozzle, to release some of the pressure\nG1 Z+0.5 E-5 X-20 Y-20 F9000 ;move Z up a bit and retract filament even more\nG28 X0 Y0 ;move X/Y to min endstops, so the head is out of the way\nM84 ;steppers off\nG90 ;absolute positioning"
         };
 
-        /**
-         * Test to make sure that our server exists
-         */
-        $scope.pingOctoPrint = function () {
-            $http({
-                method: 'GET',
-                //url: 'http://' + $scope.address + ':' + $scope.port + '/api/printer',
-                url: 'http://' + $scope.address + '/api/printer',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-api-key': $scope.apiKey
-                }
-            }).then(function successCallback(response) {
-                console.log(response);
-                $scope.data = response.data;
-                $scope.dataHere = true;
-            }, function errorCallback(response) {
-                console.error(response);
-            });
-        };
 
         /**
          * Generate a new client id and layout all of the files for this new client on the server
