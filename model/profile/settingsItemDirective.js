@@ -19,11 +19,12 @@
             var itemName = setting.setting;
             var label = setting.label;
             var type = setting.type;
+            var defaultSetting = setting.default;
 
             switch (type) {
                 case "float":
                     item = "<label for=\"" + itemName + "\">" + label + "</label>";
-                    item = item + "<input ng-model='setting.default' type=\"number\" class=\"form-control\" id=\"" + itemName + "\">";
+                    item = item + "<input value=\'" + defaultSetting + "\' type=\"number\" class=\"form-control\" id=\"" + itemName + "\">";
                     break;
                 case "int":
                     item = "<label for=\"" + itemName + "\">" + label + "</label>";
