@@ -9,8 +9,8 @@
 
         // parse settings file into large object
         $http.get('model/profile/settings.json').success(function (data) {
-            $scope.settings = data;
-            console.log($scope.settings);
+            $scope.settings = data.settings;
+            //console.log($scope.settings);
         });
 
         // split this object amongst all of the services
