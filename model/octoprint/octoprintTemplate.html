@@ -25,12 +25,16 @@
                 <button ng-click="pingOctoprint()" class="btn btn-default">Connect</button>
                 <button ng-click="otherUrl = !otherUrl" class="btn btn-primary">Custom Address?</button>
             </form>
+
+            <!--TEMPERATURE-->
+            <div class="panel panel-data" ng-if="octoprintDataHere">
+                <h3>Printer Info</h3>
+                <h4><strong>Nozzle Temp:</strong> {{octoprintData.temperature.tool0.actual}} &#8451;</h4>
+                <h4><strong>Bed Temp:</strong> {{octoprintData.temperature.bed.actual}} &#8451;</h4>
+            </div>
+
         </div>
     </div>
 
-    <!--TEMPERATURE-->
-    <!--<div class="panel panel-data" ng-if="dataHere">-->
-        <!--<h4><strong>Nozzle Temp:</strong> {{data.temperature.tool0.actual}} &#8451;</h4>-->
-        <!--<h4><strong>Bed Temp:</strong> {{data.temperature.bed.actual}} &#8451;</h4>-->
-    <!--</div>-->
+
 </div>

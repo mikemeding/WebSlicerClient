@@ -22,13 +22,13 @@
     }]);
 
 
-    app.controller("Deprecated", ["$http", "$scope", Deprecated]);
+    app.controller("Deprecated", ["$http", "$scope", "$window", Deprecated]);
 
-    function Deprecated($http, $scope) {
+    function Deprecated($http, $scope, $window) {
         // environment vars
         var baseUrl = "http://localhost:8080/WebSlicer/slicer";
         $scope.title = "Web Slicer";
-        $scope.dataHere = false;
+        $scope.octoprintDataHere = false;
         $scope.clientId = "";
         $scope.modelFiles = {};
         $scope.gcode = {"gcode": ""};
@@ -208,8 +208,19 @@
             };
         }
 
-    }
+        //DOWNLOAD GCODE FUNCTION
+        $scope.downloadGcode = function (gcode) {
+            var blob = new Blob([gcode], {type: "application/json;charset=utf-8;"});
+            var downloadLink = angular.element('<a></a>');
+            //var downloadLink = angular.element(elem.querySelector(".downloadGcode"));
+            downloadLink.attr('href', window.URL.createObjectURL(blob));
+            downloadLink.attr('download', 'output.gcode');
+            downloadLink[0].click();
 
+            //$window.open("data:application/json;charset=utf-8," + encodeURIComponent(gcode));
+        }
+
+    }
 
 
 })();

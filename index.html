@@ -24,6 +24,7 @@
     <script src="model/profile/settingsItemDirective.js"></script>
 
     <!--OCTOPRINT-->
+    <script src="model/octoprint/octoprintService.js"></script>
     <script src="model/octoprint/octoprintDirective.js"></script>
     <script src="model/octoprint/octoprintController.js"></script>
 
@@ -136,7 +137,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4>Gcode Output Window</h4>
-                    <a download="output.gcode" ng-href="{{gcodeDownload}}">download gcode</a>
+                    <a ng-href="{{gcodeUrl}}" ng-click="downloadGcode(gcode.gcode)">download gcode</a>
                 </div>
                 <div class="panel-body">
                     <textarea cols="30" rows="100" ng-model="gcode.gcode" class="form-control"></textarea>

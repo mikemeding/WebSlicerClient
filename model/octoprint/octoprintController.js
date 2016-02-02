@@ -3,12 +3,15 @@
  */
 (function () {
     var app = angular.module("WebSlicer");
-    app.controller("OctoprintController", ["$http", "$scope", function ($http, $scope) {
+    app.controller("OctoprintController", ["$http", "$scope", "OctoprintService", function ($http, $scope, OctoprintService) {
 
+        //TODO: these need to be refactored
         $scope.url = "";
         $scope.port = "";
         $scope.apiKey = "";
         $scope.otherUrl = false;
+        $scope.octoprintData = {};
+        $scope.octoprintDataHere = false;
 
         /**
          * Settings object should look like this,
@@ -18,44 +21,33 @@
          * @returns {string}
          */
         $scope.pingOctoprint = function () {
-            // figure out if url requires port
-            var address = getDefault();
+            // figure out if url requires port and preform address resolution
+            var address = OctoprintService.getDefaultAddress();
             if ($scope.port && $scope.url !== address) {
                 address = $scope.url + ":" + $scope.port;
             } else {
                 if ($scope.url) {
                     address = $scope.url + ":5000";
-
                 }
             }
 
             console.log(address);
             console.log("API Key: " + $scope.apiKey);
-            //$http({
-            //    method: 'GET',
-            //    url: 'http://' + $scope.url + '/api/printer',
-            //    headers: {
-            //        'Content-Type': 'application/json',
-            //        'x-api-key': apiKey
-            //    }
-            //}).then(function successCallback(response) {
-            //    console.log(response);
-            //    $scope.data = response.data;
-            //    $scope.dataHere = true;
-            //}, function errorCallback(response) {
-            //    console.error(response);
-            //});
+
+            // wait and resolve promise from pinging new octoprint server
+            OctoprintService.ping(address)
+                .then(function successCallback(response) {
+                    console.log(response);
+                    $scope.octoprintData = response.data;
+                    $scope.octoprintDataHere = true;
+                }, function errorCallback(response) {
+                    console.error(response);
+                    $scope.octoprintDataHere = false;
+                });
+
+
         };
 
-        /**
-         * Get the default connection params for OctoPi
-         *
-         * @param apiKey The OctoPrint api key.
-         * @returns {{url: string, port: string, apiKey: string}}
-         */
-        function getDefault() {
-            return "octopi.local";
-        };
 
     }]);
 })();
