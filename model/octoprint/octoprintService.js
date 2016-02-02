@@ -6,10 +6,10 @@
 
     app.service("OctoprintService", ["$http", function ($http) {
 
-        this.ping = function (url) {
+        this.ping = function (url, apiKey) {
             return $http({
                     method: 'GET',
-                    url: 'http://' + $scope.url + '/api/printer',
+                    url: 'http://' + url + '/api/printer',
                     headers: {
                         'Content-Type': 'application/json',
                         'x-api-key': apiKey

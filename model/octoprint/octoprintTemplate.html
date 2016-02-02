@@ -8,18 +8,18 @@
             <form>
                 <div ng-show="otherUrl">
                     <div class="form-group">
-                        <label for="ipAddress">OctoPrint IP Address{{url}}</label>
+                        <label for="ipAddress">OctoPrint IP Address</label>
                         <input ng-model="url" type="text" class="form-control" id="ipAddress"
                                placeholder="OctoPrint IP Address">
                     </div>
                     <div class="form-group">
-                        <label for="port">Port{{port}}</label>
+                        <label for="port">Port</label>
                         <input ng-model="port" type="number" class="form-control" id="port"
                                placeholder="port (default 5000)">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="apiKey">API Key {{apiKey}}</label>
+                    <label for="apiKey">API Key</label>
                     <input ng-model="apiKey" type="text" class="form-control" id="apiKey" placeholder="API Key">
                 </div>
                 <button ng-click="pingOctoprint()" class="btn btn-default">Connect</button>

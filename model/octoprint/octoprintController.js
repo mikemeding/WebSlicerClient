@@ -35,7 +35,7 @@
             console.log("API Key: " + $scope.apiKey);
 
             // wait and resolve promise from pinging new octoprint server
-            OctoprintService.ping(address)
+            OctoprintService.ping(address, $scope.apiKey)
                 .then(function successCallback(response) {
                     console.log(response);
                     $scope.octoprintData = response.data;
