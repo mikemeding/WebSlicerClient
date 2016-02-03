@@ -6,6 +6,12 @@
 
     app.service("OctoprintService", ["$http", function ($http) {
 
+        /**
+         * This just returns some basic info about the printer and displays it.
+         * @param url
+         * @param apiKey
+         * @returns {*}
+         */
         this.ping = function (url, apiKey) {
             return $http({
                     method: 'GET',
@@ -16,6 +22,43 @@
                     }
                 }
             )
+        };
+
+        /**
+         * Gets the list of files currently uploaded to the octoprint local address
+         * @param url
+         * @param apiKey
+         * @returns {*}
+         */
+        this.getFileList = function (url, apiKey) {
+            return $http({
+                method: 'GET',
+                url: 'http://' + url + '/api/files',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-api-key': apiKey
+                }
+            })
+        };
+
+        /**
+         * Upload a new file to the octoprint server
+         * @param url
+         * @param apiKey
+         * @param file
+         */
+        this.uploadFile = function (url, apiKey, file) {
+            console.error("functionality does not exist yet. uploadFile()");
+        };
+
+        /**
+         * Load a filename from the local files list and start printing it right now
+         * @param url
+         * @param apiKey
+         * @param fileName
+         */
+        this.printFile = function (url, apiKey, fileName) {
+            console.error("functionality does not exist yet. printFile()");
         };
 
 

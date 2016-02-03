@@ -12,6 +12,8 @@
         $scope.otherUrl = false;
         $scope.octoprintData = {};
         $scope.octoprintDataHere = false;
+        $scope.connected = false;
+        $scope.connectedAddress = "";
 
         /**
          * Settings object should look like this,
@@ -33,6 +35,8 @@
 
             console.log(address);
             console.log("API Key: " + $scope.apiKey);
+            $scope.connectedAddress = address;
+            $scope.connected = true;
 
             // wait and resolve promise from pinging new octoprint server
             OctoprintService.ping(address, $scope.apiKey)
@@ -44,9 +48,19 @@
                     console.error(response);
                     $scope.octoprintDataHere = false;
                 });
-
-
         };
+
+        /**
+         * Testing getting the files list from octoprint
+         */
+        $scope.getOctoprintFiles = function () {
+            OctoprintService.getFileList($scope.connectedAddress, $scope.apiKey)
+                .then(function successCallback(response) {
+                    console.log(response);
+                }, function errorCallback(response) {
+                    console.error(response);
+                });
+        }
 
 
     }]);
