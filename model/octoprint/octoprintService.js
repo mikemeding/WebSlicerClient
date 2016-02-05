@@ -12,10 +12,10 @@
          * @param apiKey
          * @returns {*}
          */
-        this.ping = function (url, apiKey) {
+        this.connection = function (url, apiKey) {
             return $http({
                     method: 'GET',
-                    url: 'http://' + url + '/api/printer',
+                    url: 'http://' + url + '/api/connection',
                     headers: {
                         'Content-Type': 'application/json',
                         'x-api-key': apiKey
@@ -34,6 +34,23 @@
             return $http({
                 method: 'GET',
                 url: 'http://' + url + '/api/files',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-api-key': apiKey
+                }
+            })
+        };
+
+        /**
+         * Get the current status of the printer including current temps
+         * @param url
+         * @param apiKey
+         * @returns {*}
+         */
+        this.getPrinterInfo = function (url, apiKey) {
+            return $http({
+                method: 'GET',
+                url: 'http://' + url + '/api/printer',
                 headers: {
                     'Content-Type': 'application/json',
                     'x-api-key': apiKey

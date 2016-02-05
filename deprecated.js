@@ -28,7 +28,7 @@
         // environment vars
         var baseUrl = "http://localhost:8080/WebSlicer/slicer";
         $scope.title = "Web Slicer";
-        $scope.octoprintDataHere = false;
+        $scope.displayOctoprintData = false;
         $scope.clientId = "";
         $scope.modelFiles = {};
         $scope.gcode = {"gcode": ""};

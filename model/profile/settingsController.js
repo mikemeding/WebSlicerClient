@@ -8,13 +8,16 @@
     app.controller("SettingsController", ["$http", "$scope", function ($http, $scope) {
 
         // parse settings file into large object
-        $http.get('model/profile/settings.json').success(function (data) {
-            $scope.settings = data.settings;
-            //console.log($scope.settings);
-        });
+        //$http.get('model/profile/settings.json').success(function (data) {
+        //    $scope.settings = data.settings;
+        //    //console.log($scope.settings);
+        //});
 
-        // split this object amongst all of the services
-
+        $scope.settingItem = {
+            "layer_height": 0.1,
+            "wall_thickness": 0.8,
+            "retraction_enable": true
+        };
 
     }]);
 

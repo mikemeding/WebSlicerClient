@@ -6,14 +6,29 @@
     app.controller("OctoprintController", ["$http", "$scope", "OctoprintService", function ($http, $scope, OctoprintService) {
 
         //TODO: these need to be refactored
+        // form collection scope variables
         $scope.url = "";
         $scope.port = "";
         $scope.apiKey = "";
         $scope.otherUrl = false;
-        $scope.octoprintData = {};
-        $scope.octoprintDataHere = false;
-        $scope.connected = false;
+
+        // data objects to be displayed
+        $scope.octoprintStatus = {};
+        $scope.octoprintFiles = [];
+
+        // internal referance variables
+        $scope.displayOctoprintData = false;
+        $scope.connectionStatus = false;
         $scope.connectedAddress = "";
+
+
+        var APIError = function (message, where) {
+            console.error(message);
+            if (where) {
+                console.error("from: " + where);
+            }
+            $scope.displayOctoprintData = false;
+        };
 
         /**
          * Settings object should look like this,
@@ -22,7 +37,7 @@
          * call get defaults with an api key for another example
          * @returns {string}
          */
-        $scope.pingOctoprint = function () {
+        $scope.connectOctoprint = function () {
             // figure out if url requires port and preform address resolution
             var address = OctoprintService.getDefaultAddress();
             if ($scope.port && $scope.url !== address) {
@@ -36,17 +51,27 @@
             console.log(address);
             console.log("API Key: " + $scope.apiKey);
             $scope.connectedAddress = address;
-            $scope.connected = true;
+
 
             // wait and resolve promise from pinging new octoprint server
-            OctoprintService.ping(address, $scope.apiKey)
+            OctoprintService.connection(address, $scope.apiKey)
                 .then(function successCallback(response) {
                     console.log(response);
-                    $scope.octoprintData = response.data;
-                    $scope.octoprintDataHere = true;
+                    if (response.data.current.state === "Operational") {
+                        $scope.connectionStatus = true;
+
+                        // operational connection. make data requests
+                        $scope.getOctoprintStatus(); // get the current printer status
+                        $scope.getOctoprintFiles(); // get current list of files
+
+
+                    } else {
+                        APIError("Error: Printer not operational.");
+                        $scope.connectionStatus = false;
+                    }
+
                 }, function errorCallback(response) {
-                    console.error(response);
-                    $scope.octoprintDataHere = false;
+                    APIError(response, "connectOctoprint");
                 });
         };
 
@@ -57,10 +82,31 @@
             OctoprintService.getFileList($scope.connectedAddress, $scope.apiKey)
                 .then(function successCallback(response) {
                     console.log(response);
+                    if (response.data.files) {
+                        $scope.octoprintFiles = response.data.files;
+                        $scope.octoprintDataHere = true;
+                    }
+
                 }, function errorCallback(response) {
-                    console.error(response);
+                    APIError(response, "getOctoprintFiles");
                 });
-        }
+        };
+
+        /**
+         *
+         */
+        $scope.getOctoprintStatus = function () {
+            OctoprintService.getPrinterInfo($scope.connectedAddress, $scope.apiKey)
+                .then(function successCallback(response) {
+                    console.log(response);
+                    if (response.data) {
+                        $scope.octoprintStatus = response.data;
+                    }
+
+                }, function errorCallback(response) {
+                    APIError(response, "getOctoprintStatus");
+                });
+        };
 
 
     }]);

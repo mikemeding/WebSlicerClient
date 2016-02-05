@@ -11,6 +11,9 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-ui-bootstrap-complete/ui-bootstrap.js"></script>
+    <script src="bower_components/angular-ui-bootstrap-complete/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/anbomofo/anbomofo.min.js"></script>
 
     <!--css-->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-cosmo.css">
@@ -119,19 +122,42 @@
     <div class="row">
         <!--SETTINGS PANEL-->
         <div class="col-lg-6">
-            <div ng-controller="SettingsController">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4>Printer Settings</h4>
-                    </div>
-                    <div class="panel-body">
-                        <form>
-                            <!--TODO: overwrite ngmodel and allow directive to build settings model.-->
-                            <curasetting ng-repeat="setting in settings" content="setting"></curasetting>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            <!--Table-->
+            <table class="table table-hover table-condensed" ng-controller="SettingsController">
+                <thead>
+                <tr>
+                    <th>layer height</th>
+                    <th>wall thickness</th>
+                    <th>retraction enable</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <!-- The existance of ng-model here means that the modal is an edit modal using customer as its data-->
+                <tr modal ng-service="MyDataService" ng-model="settingItem">
+                    <td>{{settingItem.layer_height}}</td>
+                    <td>{{settingItem.wall_thickness}}</td>
+                    <td>
+                        <input type="checkbox" ng-model="settingItem.retraction_enable">
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+            <!--<div ng-controller="SettingsController">-->
+            <!--<div class="panel panel-default">-->
+            <!--<div class="panel-heading">-->
+            <!--<h4>Printer Settings</h4>-->
+            <!--</div>-->
+            <!--<div class="panel-body">-->
+            <!--<form>-->
+            <!--&lt;!&ndash;TODO: overwrite ngmodel and allow directive to build settings model.&ndash;&gt;-->
+            <!--<curasetting ng-repeat="setting in settings" content="setting"></curasetting>-->
+            <!--</form>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
         </div>
         <div class="col-lg-6">
             <div class="panel panel-default">

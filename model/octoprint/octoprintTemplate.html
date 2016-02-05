@@ -22,16 +22,17 @@
                     <label for="apiKey">API Key</label>
                     <input ng-model="apiKey" type="text" class="form-control" id="apiKey" placeholder="API Key">
                 </div>
-                <button ng-click="pingOctoprint()" class="btn btn-default">Connect</button>
+                <button ng-click="connectOctoprint()" class="btn btn-default">Connect</button>
                 <button ng-click="otherUrl = !otherUrl" class="btn btn-primary">Custom Address?</button>
-                <button ng-click="getOctoprintFiles()" class="btn btn-warning">Get files</button>
             </form>
 
             <!--TEMPERATURE-->
             <div class="panel panel-data" ng-if="octoprintDataHere">
                 <h3>Printer Info</h3>
-                <h4><strong>Nozzle Temp:</strong> {{octoprintData.temperature.tool0.actual}} &#8451;</h4>
-                <h4><strong>Bed Temp:</strong> {{octoprintData.temperature.bed.actual}} &#8451;</h4>
+                <h4>Nozzle Temp: <strong>{{octoprintStatus.temperature.tool0.actual}}</strong> &#8451;</h4>
+                <h4>Bed Temp: <strong>{{octoprintStatus.temperature.bed.actual}}</strong> &#8451;</h4>
+                <h3>Current Files</h3>
+                <h4 ng-repeat="file in octoprintFiles">{{file.name}}</h4>
             </div>
 
         </div>
