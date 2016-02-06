@@ -1,0 +1,224 @@
+[
+  {
+    "setting": "layer_height",
+    "default": 0.1,
+    "type": "float",
+    "category": "Quality",
+    "label": "Layer Height (mm)",
+    "description": "Layer height in millimeters.\nThis is the most important setting to determine the quality of your print. Normal quality prints are 0.1mm, high quality is 0.06mm. You can go up to 0.25mm with an Ultimaker for very fast prints at low quality."
+  },
+  {
+    "setting": "wall_thickness",
+    "default": 0.8,
+    "type": "float",
+    "category": "Quality",
+    "label": "Shell Thickness (mm)",
+    "description": "Thickness of the outside shell in the horizontal direction.\nThis is used in combination with the nozzle size to define the number\nof perimeter lines and the thickness of those perimeter lines."
+  },
+  {
+    "setting": "retraction_enable",
+    "default": true,
+    "type": "bool",
+    "category": "Quality",
+    "label": "Enable Retraction",
+    "description": "Retract the filament when the nozzle is moving over a none-printed area. Details about the retraction can be configured in the advanced tab."
+  },
+  {
+    "setting": "solid_layer_thickness",
+    "default": 0.6,
+    "type": "float",
+    "category": "Fill",
+    "label": "Bottom/Top thickness (mm)",
+    "description": "This controls the thickness of the bottom and top layers, the amount of solid layers put down is calculated by the layer thickness and this value.\nHaving this value a multiple of the layer thickness makes sense. And keep it near your wall thickness to make an evenly strong part."
+  },
+  {
+    "setting": "fill_density",
+    "default": 20,
+    "type": "float",
+    "category": "Fill",
+    "label": "Fill Density (%)",
+    "description": "This controls how densely filled the insides of your print will be. For a solid part use 100%, for an empty part use 0%. A value around 20% is usually enough.\nThis won't affect the outside of the print and only adjusts how strong the part becomes."
+  },
+  {
+    "setting": "print_speed",
+    "default": 50,
+    "type": "float",
+    "category": "Speed and Temperature",
+    "label": "Print Speed (mm/s)",
+    "description": "Speed at which printing happens. A well adjusted Ultimaker can reach 150mm/s, but for good quality prints you want to print slower. Printing speed depends on a lot of factors. So you will be experimenting with optimal settings for this."
+  },
+  {
+    "setting": "print_temperature",
+    "default": 210,
+    "type": "int",
+    "category": "Speed and Temperature",
+    "label": "Printing Temperature (C)",
+    "description": "Temperature used for printing. Set at 0 to pre-heat yourself.\nFor PLA a value of 210C is usually used.\nFor ABS a value of 230C or higher is required."
+  },
+  {
+    "setting": "print_temperature2",
+    "default": 0,
+    "type": "int",
+    "category": "Speed and Temperature",
+    "label": "2nd Nozzle Temp (C)",
+    "description": "Temperature used for printing. Set at 0 to pre-heat yourself.\nFor PLA a value of 210C is usually used.\nFor ABS a value of 230C or higher is required."
+  },
+  {
+    "setting": "print_temperature3",
+    "default": 0,
+    "type": "int",
+    "category": "Speed and Temperature",
+    "label": "3rd Nozzle Temp (C)",
+    "description": "Temperature used for printing. Set at 0 to pre-heat yourself.\nFor PLA a value of 210C is usually used.\nFor ABS a value of 230C or higher is required."
+  },
+  {
+    "setting": "print_temperature4",
+    "default": 0,
+    "type": "int",
+    "category": "Speed and Temperature",
+    "label": "4th Nozzle Temp (C)",
+    "description": "Temperature used for printing. Set at 0 to pre-heat yourself.\nFor PLA a value of 210C is usually used.\nFor ABS a value of 230C or higher is required."
+  },
+  {
+    "setting": "print_temperature5",
+    "default": 0,
+    "type": "int",
+    "category": "Speed and Temperature",
+    "label": "3rd Nozzle Temp (C)",
+    "description": "Temperature used for printing. Set at 0 to pre-heat yourself.\nFor PLA a value of 210C is usually used.\nFor ABS a value of 230C or higher is required."
+  },
+  {
+    "setting": "print_bed_temperature",
+    "default": 70,
+    "type": "int",
+    "category": "Speed and Temperature",
+    "label": "Bed Temperature (C)",
+    "description": "Temperature used for the heated printer bed. Set at 0 to pre-heat yourself."
+  },
+  {
+    "setting": "support",
+    "default": 0,
+    "type": "list",
+    "list": [
+      "Touching buildplate",
+      "Everywhere"
+    ],
+    "category": "Support",
+    "label": "Support Type",
+    "description": "Type of support structure build.\n\"Touching buildplate\" is the most commonly used support setting.\n\nNone does not do any support.\nTouching buildplate only creates support where the support structure will touch the build platform.\nEverywhere creates support even on top of parts of the model."
+  },
+  {
+    "setting": "platform_adhesion",
+    "default": 0,
+    "type": "list",
+    "list": [
+      "None",
+      "Brim",
+      "Raft"
+    ],
+    "category": "Support",
+    "label": "Platform Ashesion Type",
+    "description": "Different options that help in preventing corners from lifting due to warping.\nBrim adds a single layer thick flat area around your object which is easy to cut off afterwards, and it is the recommended option.\nRaft adds a thick raster below the object and a thin interface between this and your object.\n(Note that enabling the brim or raft disables the skirt)"
+  },
+  {
+    "setting": "filament_diameter",
+    "default": 1.75,
+    "type": "float",
+    "category": "Filament",
+    "label": "Diameter (mm)",
+    "description": "Diameter of your filament, as accurately as possible.\nIf you cannot measure this value you will have to calibrate it, a higher number means less extrusion, a smaller number generates more extrusion."
+  },
+  {
+    "setting": "filament_diameter2",
+    "default": 0,
+    "type": "float",
+    "category": "Filament",
+    "label": "Diameter2 (mm)",
+    "description": "Diameter of your filament for the 2nd nozzle. Use 0 to use the same diameter as for nozzle 2."
+  },
+  {
+    "setting": "filament_diameter3",
+    "default": 0,
+    "type": "float",
+    "category": "Filament",
+    "label": "Diameter3 (mm)",
+    "description": "Diameter of your filament for the 3rd nozzle. Use 0 to use the same diameter as for nozzle 3."
+  },
+  {
+    "setting": "filament_diameter4",
+    "default": 0,
+    "type": "float",
+    "category": "Filament",
+    "label": "Diameter4 (mm)",
+    "description": "Diameter of your filament for the 4th nozzle. Use 0 to use the same diameter as for nozzle 4."
+  },
+  {
+    "setting": "filament_diameter5",
+    "default": 0,
+    "type": "float",
+    "category": "Filament",
+    "label": "Diameter5 (mm)",
+    "description": "Diameter of your filament for the 5th nozzle. Use 0 to use the same diameter as for nozzle 5."
+  },
+  {
+    "setting": "filament_flow",
+    "default": 100,
+    "type": "float",
+    "category": "Filament",
+    "label": "Flow (%)",
+    "description": "Flow compensation, the amount of material extruded is multiplied by this value"
+  },
+  {
+    "setting": "nozzle_size",
+    "default": 0.4,
+    "type": "float",
+    "category": "Machine",
+    "label": "Nozzle Size (mm)",
+    "description": "The nozzle size is very important, this is used to calculate the line width of the infill, and used to calculate the amount of outside wall lines and thickness for the wall thickness you entered in the print settings."
+  },
+  {
+    "setting": "retraction_speed",
+    "default": 40.0,
+    "type": "float",
+    "category": "Retraction",
+    "label": "Speed (mm/s)",
+    "description": "Speed at which the filament is retracted, a higher retraction speed works better. But a very high retraction speed can lead to filament grinding."
+  },
+  {
+    "setting": "retraction_amount",
+    "default": 4.5,
+    "type": "float",
+    "category": "Retraction",
+    "label": "Distance (mm)",
+    "description": "Amount of retraction, set at 0 for no retraction at all. A value of 4.5mm seems to generate good results."
+  },
+  {
+    "setting": "retraction_dual_amount",
+    "default": 16.5,
+    "type": "float",
+    "category": "Retraction",
+    "label": "Dual extrusion switch amount (mm)",
+    "description": "Amount of retraction when switching nozzle with dual-extrusion, set at 0 for no retraction at all. A value of 16.0mm seems to generate good results."
+  },
+  {
+    "setting": "retraction_min_travel",
+    "default": 1.5,
+    "type": "float",
+    "category": "Retraction",
+    "label": "Minimum travel (mm)",
+    "description": "Minimum amount of travel needed for a retraction to happen at all. To make sure you do not get a lot of retractions in a small area."
+  },
+  {
+    "setting": "retraction_combing",
+    "default": 0,
+    "type": "list",
+    "list": [
+      "Off",
+      "All",
+      "No Skin"
+    ],
+    "category": "Retraction",
+    "label": "Enable combing",
+    "description": "Combing is the act of avoiding holes in the print for the head to travel over. If combing is OFF the printer head moves straight from the start point to the end point and it will always retract.  If ALL, enable combing on all surfaces.  If NO SKIN, enable combing on all except skin surfaces."
+  }
+]

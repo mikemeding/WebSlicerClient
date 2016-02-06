@@ -10,32 +10,31 @@
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/angular-ui-bootstrap-complete/ui-bootstrap.js"></script>
-    <script src="bower_components/angular-ui-bootstrap-complete/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
 
     <!--css-->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-cosmo.css">
+    <!--<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">-->
     <link rel="stylesheet" href="css/custom.css"/>
 
-    <!-- MY SCRIPTS -->
+    <!-- MAIN CONTROLLER AND CONFIG -->
     <script src="app.js"></script>
 
     <!--SETTINGS-->
-    <!--builder-->
-    <script src="model/profile/builder/modalDirective.js"></script>
-    <script src="model/profile/builder/modalService.js"></script>
-    <!--controllers-->
-    <!--<script src="model/profile/settingsController.js"></script>-->
-    <!--<script src="model/profile/settingsItemDirective.js"></script>-->
-    <!--<script src="model/profile/testSettingsDataService.js"></script>-->
+    <script src="model/profile/settingsController.js"></script>
+    <script src="model/profile/settingsTabDirective.js"></script>
+    <script src="model/profile/settingsBuilderService.js"></script>
 
     <!--OCTOPRINT-->
     <script src="model/octoprint/octoprintService.js"></script>
     <script src="model/octoprint/octoprintDirective.js"></script>
     <script src="model/octoprint/octoprintController.js"></script>
 
-
+    <!--CRAP THAT NEEDS TO GO-->
     <script src="deprecated.js"></script>
 
 </head>
@@ -123,62 +122,50 @@
 
     </div>
 
-    <!--<div class="row" ng-controller="SettingsController">-->
+    <div class="row" ng-controller="SettingsController">
 
-        <!--<button class="btn btn-primary" modal ng-service="TestSettingsDataService">Add item</button>-->
+        <!--SETTINGS PANEL-->
+        <div class="col-lg-6">
 
-        <!--&lt;!&ndash;SETTINGS PANEL&ndash;&gt;-->
-        <!--<div class="col-lg-6">-->
+            <div ng-controller="SettingsController">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>Printer Settings</h4>
+                    </div>
+                    <div class="panel-body">
 
-            <!--&lt;!&ndash;Table&ndash;&gt;-->
-            <!--<table class="table table-hover table-condensed">-->
-                <!--<thead>-->
-                <!--<tr>-->
-                    <!--<th>layer height</th>-->
-                    <!--<th>wall thickness</th>-->
-                    <!--<th>retraction enable</th>-->
-                <!--</tr>-->
-                <!--</thead>-->
-                <!--<tbody>-->
+                        <uib-tabset>
+                            <uib-tab heading="shit 1">
+                                <form>
+                                    <curasettings ng-repeat="setting in settings" content="setting"></curasettings>
+                                </form>
+                            </uib-tab>
 
-                <!--&lt;!&ndash; The existance of ng-model here means that the modal is an edit modal using customer as its data&ndash;&gt;-->
-                <!--<tr modal ng-service="TestSettingsDataService" ng-model="settingItem">-->
-                    <!--<td>{{settingItem.layer_height}}</td>-->
-                    <!--<td>{{settingItem.wall_thickness}}</td>-->
-                    <!--<td>-->
-                        <!--<input type="checkbox" ng-model="settingItem.retraction_enable">-->
-                    <!--</td>-->
-                <!--</tr>-->
+                            <uib-tab heading="shit 2">
+                                <form>
+                                    <curasettings ng-repeat="setting in settings2" content="setting"></curasettings>
+                                </form>
+                            </uib-tab>
+                        </uib-tabset>
 
-                <!--</tbody>-->
-            <!--</table>-->
 
-            <!--&lt;!&ndash;<div ng-controller="SettingsController">&ndash;&gt;-->
-            <!--&lt;!&ndash;<div class="panel panel-default">&ndash;&gt;-->
-            <!--&lt;!&ndash;<div class="panel-heading">&ndash;&gt;-->
-            <!--&lt;!&ndash;<h4>Printer Settings</h4>&ndash;&gt;-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-            <!--&lt;!&ndash;<div class="panel-body">&ndash;&gt;-->
-            <!--&lt;!&ndash;<form>&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;TODO: overwrite ngmodel and allow directive to build settings model.&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;<curasetting ng-repeat="setting in settings" content="setting"></curasetting>&ndash;&gt;-->
-            <!--&lt;!&ndash;</form>&ndash;&gt;-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--</div>-->
-        <!--<div class="col-lg-6">-->
-            <!--<div class="panel panel-default">-->
-                <!--<div class="panel-heading">-->
-                    <!--<h4>Gcode Output Window</h4>-->
-                    <!--<a ng-href="{{gcodeUrl}}" ng-click="downloadGcode(gcode.gcode)">download gcode</a>-->
-                <!--</div>-->
-                <!--<div class="panel-body">-->
-                    <!--<textarea cols="30" rows="100" ng-model="gcode.gcode" class="form-control"></textarea>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Gcode Output Window</h4>
+                    <a ng-href="{{gcodeUrl}}" ng-click="downloadGcode(gcode.gcode)">download gcode</a>
+                </div>
+                <div class="panel-body">
+                    <textarea cols="30" rows="100" ng-model="gcode.gcode" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 

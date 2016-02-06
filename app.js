@@ -2,7 +2,7 @@
  * Created by mike on 9/25/15.
  */
 (function () {
-    var app = angular.module("WebSlicer", ["ui.router","ui.bootstrap"]);
+    var app = angular.module("WebSlicer", ["ui.router","ui.bootstrap","ngAnimate"]);
 
     app.config(["$stateProvider", "$urlRouterProvider", "$controllerProvider", "$compileProvider", function appConfig($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvider) {
         // default route
