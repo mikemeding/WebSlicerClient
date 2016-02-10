@@ -56,38 +56,6 @@
     "description": "Temperature used for printing. Set at 0 to pre-heat yourself.\nFor PLA a value of 210C is usually used.\nFor ABS a value of 230C or higher is required."
   },
   {
-    "setting": "print_temperature2",
-    "default": 0,
-    "type": "int",
-    "category": "Speed and Temperature",
-    "label": "2nd Nozzle Temp (C)",
-    "description": "Temperature used for printing. Set at 0 to pre-heat yourself.\nFor PLA a value of 210C is usually used.\nFor ABS a value of 230C or higher is required."
-  },
-  {
-    "setting": "print_temperature3",
-    "default": 0,
-    "type": "int",
-    "category": "Speed and Temperature",
-    "label": "3rd Nozzle Temp (C)",
-    "description": "Temperature used for printing. Set at 0 to pre-heat yourself.\nFor PLA a value of 210C is usually used.\nFor ABS a value of 230C or higher is required."
-  },
-  {
-    "setting": "print_temperature4",
-    "default": 0,
-    "type": "int",
-    "category": "Speed and Temperature",
-    "label": "4th Nozzle Temp (C)",
-    "description": "Temperature used for printing. Set at 0 to pre-heat yourself.\nFor PLA a value of 210C is usually used.\nFor ABS a value of 230C or higher is required."
-  },
-  {
-    "setting": "print_temperature5",
-    "default": 0,
-    "type": "int",
-    "category": "Speed and Temperature",
-    "label": "3rd Nozzle Temp (C)",
-    "description": "Temperature used for printing. Set at 0 to pre-heat yourself.\nFor PLA a value of 210C is usually used.\nFor ABS a value of 230C or higher is required."
-  },
-  {
     "setting": "print_bed_temperature",
     "default": 70,
     "type": "int",
@@ -100,6 +68,7 @@
     "default": 0,
     "type": "list",
     "list": [
+      "None",
       "Touching buildplate",
       "Everywhere"
     ],
@@ -127,38 +96,6 @@
     "category": "Filament",
     "label": "Diameter (mm)",
     "description": "Diameter of your filament, as accurately as possible.\nIf you cannot measure this value you will have to calibrate it, a higher number means less extrusion, a smaller number generates more extrusion."
-  },
-  {
-    "setting": "filament_diameter2",
-    "default": 0,
-    "type": "float",
-    "category": "Filament",
-    "label": "Diameter2 (mm)",
-    "description": "Diameter of your filament for the 2nd nozzle. Use 0 to use the same diameter as for nozzle 2."
-  },
-  {
-    "setting": "filament_diameter3",
-    "default": 0,
-    "type": "float",
-    "category": "Filament",
-    "label": "Diameter3 (mm)",
-    "description": "Diameter of your filament for the 3rd nozzle. Use 0 to use the same diameter as for nozzle 3."
-  },
-  {
-    "setting": "filament_diameter4",
-    "default": 0,
-    "type": "float",
-    "category": "Filament",
-    "label": "Diameter4 (mm)",
-    "description": "Diameter of your filament for the 4th nozzle. Use 0 to use the same diameter as for nozzle 4."
-  },
-  {
-    "setting": "filament_diameter5",
-    "default": 0,
-    "type": "float",
-    "category": "Filament",
-    "label": "Diameter5 (mm)",
-    "description": "Diameter of your filament for the 5th nozzle. Use 0 to use the same diameter as for nozzle 5."
   },
   {
     "setting": "filament_flow",

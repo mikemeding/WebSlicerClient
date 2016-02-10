@@ -106,23 +106,7 @@
             $scope.modelFileId = modelId;
         };
 
-        /**
-         * Upload the settings as a formatted JSONObject to the server for slicing
-         */
-        $scope.importSettings = function () {
-            $http({
-                method: 'POST',
-                url: baseUrl + "/importSe ttings/" + $scope.clientId,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                data: buildSettingsObject()
-            }).then(function successCallback(response) {
-                console.log(response);
-            }, function errorCallback(response) {
-                console.error(response);
-            });
-        };
+
 
 
         /**
@@ -178,35 +162,7 @@
             }
         };
 
-        function buildSettingsObject() {
-            return {
-                "id": "prusa_i3", "version": 1,
-                "name": $scope.name,
-                "manufacturer": "Other",
-                "author": "Other",
-                "icon": "icon_ultimaker2.png",
-                "platform": "prusai3_platform.stl",
-                "inherits": "fdmprinter.json", // this must come from a symbolic link in the directory.
-                "overrides": {
-                    "machine_heated_bed": {"default": $scope.machine_heated_bed},
-                    "machine_width": {"default": $scope.machine_width},
-                    "machine_height": {"default": $scope.machine_height},
-                    "machine_depth": {"default": $scope.machine_depth},
-                    "machine_center_is_zero": {"default": $scope.machine_center_is_zero},
-                    "machine_nozzle_size": {"default": $scope.machine_nozzle_size},
-                    "machine_nozzle_heat_up_speed": {"default": $scope.machine_nozzle_heat_up_speed},
-                    "machine_nozzle_cool_down_speed": {"default": $scope.machine_nozzle_cool_down_speed},
-                    "machine_head_shape_min_x": {"default": $scope.machine_head_shape_min_x},
-                    "machine_head_shape_min_y": {"default": $scope.machine_head_shape_min_y},
-                    "machine_head_shape_max_x": {"default": $scope.machine_head_shape_max_x},
-                    "machine_head_shape_max_y": {"default": $scope.machine_head_shape_max_y},
-                    "machine_nozzle_gantry_distance": {"default": $scope.machine_nozzle_gantry_distance},
-                    "machine_gcode_flavor": {"default": $scope.machine_gcode_flavor},
-                    "machine_start_gcode": $scope.machine_start_gcode,
-                    "machine_end_gcode": $scope.machine_end_gcode
-                }
-            };
-        }
+
 
         //DOWNLOAD GCODE FUNCTION
         $scope.downloadGcode = function (gcode) {

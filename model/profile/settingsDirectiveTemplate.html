@@ -1,0 +1,23 @@
+<form>
+    <div class="form-group" ng-repeat="item in settings">
+        <!--styling for float type input-->
+        <div ng-if="settings[$index].type === 'float' || settings[$index].type === 'int'">
+            <label for="{{settings[$index].setting}}">{{settings[$index].label}}</label>
+            <input type="number" class="form-control" id="{{settings[$index].setting}}"
+                   ng-model="settings[$index].default">
+        </div>
+        <!--styling for boolean inputs-->
+        <div ng-if="settings[$index].type === 'bool'">
+            <label><input type="checkbox" ng-model="settings[$index].default">
+                {{settings[$index].label}}</label>
+        </div>
+        <!--styling for list type inputs-->
+        <div ng-if="settings[$index].type === 'list'">
+            <label for="settings[$index].setting">{{settings[$index].label}}</label>
+            <select class="form-control" id="settings[$index].setting" ng-model="settings[$index].default">
+                <option ng-repeat="option in settings[$index].list">{{option}}</option>
+            </select>
+        </div>
+
+    </div>
+</form>

@@ -5,30 +5,54 @@
     var app = angular.module("WebSlicer");
 
 
-    app.controller("SettingsController", ["$http", "$scope", function ($http, $scope) {
-
-        $scope.basicSettings = [];
-        $scope.advancedSettings = [];
-        $scope.fineTuneSettings = [];
-        $scope.machineSettings = [];
-        //$scope.startEndGcodeSettings =[];
+    app.controller("SettingsController", ["$http", "$scope", "$rootScope", function ($http, $scope, $rootScope) {
 
         /**
-         * PULL ALL SETTINGS FROM CORRESPONDING JSON FILES
+         * Upload the settings as a formatted JSONObject to the server for slicing
          */
-        var basepath = "model/profile/json/";
-        $http.get(basepath + "basic.json").success(function (data) {
-            $scope.basicSettings = data;
-        });
-        $http.get(basepath + "advanced.json").success(function (data) {
-            $scope.advancedSettings = data;
-        });
-        $http.get(basepath + "fine-tune.json").success(function (data) {
-            $scope.fineTuneSettings = data;
-        });
-        $http.get(basepath + "machine.json").success(function (data) {
-            $scope.machineSettings = data;
-        });
+        $scope.importSettings = function () {
+            console.log(buildSettingsObject());
+            //$http({
+            //    method: 'POST',
+            //    url: baseUrl + "/importSettings/" + $scope.clientId,
+            //    headers: {
+            //        'Content-Type': 'application/json'
+            //    },
+            //    data: buildSettingsObject()
+            //}).then(function successCallback(response) {
+            //    console.log(response);
+            //}, function errorCallback(response) {
+            //    console.error(response);
+            //});
+        };
+
+        // this is just a formality it seems
+        function buildSettingsObject() {
+            var overrides = {};
+
+            // build override object from all settings
+            for (var prop in $rootScope.settingsTracker) {
+                //console.log("obj." + prop + " = " + $rootScope.settingsTracker[prop]);
+                var temp = {};
+                for (var item in $rootScope.settingsTracker[prop]) {
+                    temp[$rootScope.settingsTracker[prop][item].setting] = $rootScope.settingsTracker[prop][item].default;
+                }
+
+                //console.log(temp);
+                angular.merge(overrides, temp);
+
+            }
+            return {
+                "id": "prusa_i3", "version": 1,
+                "name": $scope.name,
+                "manufacturer": "Other",
+                "author": "Other",
+                "icon": "icon_ultimaker2.png",
+                "platform": "prusai3_platform.stl",
+                "inherits": "fdmprinter.json", // this must come from a symbolic link in the directory.
+                "overrides": overrides
+            };
+        }
 
     }]);
 

@@ -15,70 +15,27 @@
 (function () {
     var app = angular.module("WebSlicer");
 
-    app.directive('curasettings', function ($http, $compile) {
-
-        var getItemTemplate = function (setting) {
-            var item = "";
-            var itemName = setting.setting;
-            var label = setting.label;
-            var type = setting.type;
-            var defaultSetting = setting.default;
-
-            switch (type) {
-                case "float":
-                    item = "<label for=\"" + itemName + "\">" + label + "</label>";
-                    item = item + "<input value=\'" + defaultSetting + "\' type=\"number\" class=\"form-control\" id=\"" + itemName + "\">";
-                    break;
-                case "int":
-                    item = "<label for=\"" + itemName + "\">" + label + "</label>";
-                    item = item + "<input type=\"number\" class=\"form-control\" id=\"" + itemName + "\">";
-                    break;
-                case "bool":
-                    item = "<label><input type=\"checkbox\"> " + label + "</label>";
-                    break;
-                case "list":
-                    break;
-            }
-            return "<div class=\"form-group\">" + item + "</div>";
-        };
+    app.directive('curasettings', function ($http, $rootScope) {
 
         var linker = function (scope, element, attrs) {
-
             // get the json file as specified by the directive
             $http.get(attrs.src).success(function (data) {
-                //console.log(data);
-                scope.settings = data; // bind data to a scope that we can reference
-
-                // build html string for all setting fields
-                var htmlString = "";
-                for (var i = 0; i < scope.settings.length; i++) {
-                    htmlString += getItemTemplate(scope.settings[i]);
+                // register all settings
+                if (!$rootScope.settingsTracker) {
+                    $rootScope.settingsTracker = {};
                 }
-                htmlString += "<button ng-click='doSomething()'>settings?</button>";
-                // bind this html to the DOM
-                element.html(htmlString).show();
-                $compile(element.contents())(scope);
+                $rootScope.settingsTracker[attrs.src] = data;
 
+                scope.settings = data; // bind data to a local scope that we can reference easily
             });
-
-
         };
 
         return {
             restrict: 'E',
-            replace: true,
             link: linker,
+            templateUrl: "model/profile/settingsDirectiveTemplate.html",
             scope: {
                 src: '='
-            },
-            controller: function ($scope) {
-                $scope.doSomething = function () {
-                    console.log($scope.settings);
-                };
-                //$scope.doSomething = function (data) {
-                //    console.log("something was done");
-                //    console.log(data);
-                //};
             }
         };
     });

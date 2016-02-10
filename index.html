@@ -135,38 +135,25 @@
 
                     <uib-tabset>
                         <uib-tab heading="basic">
-                            <form>
-                                <!--<curasettings ng-repeat="basic in basicSettings" content="model/profile/json/basic.json"></curasettings>-->
-                                <curasettings src="model/profile/json/basic.json"></curasettings>
-                            </form>
+                            <curasettings src="model/profile/json/basic.json"></curasettings>
                         </uib-tab>
-
                         <uib-tab heading="advanced">
-                            <form>
-                                <curasettings src="model/profile/json/advanced.json"></curasettings>
-                            </form>
+                            <curasettings src="model/profile/json/advanced.json"></curasettings>
                         </uib-tab>
-
                         <uib-tab heading="fine-tune">
-                            <form>
-                                <curasettings src="model/profile/json/fine-tune.json"></curasettings>
-                            </form>
+                            <curasettings src="model/profile/json/fine-tune.json"></curasettings>
                         </uib-tab>
-
                         <uib-tab heading="machine">
-                            <form>
-                                <curasettings src="model/profile/json/machine.json"></curasettings>
-                            </form>
+                            <curasettings src="model/profile/json/machine.json"></curasettings>
                         </uib-tab>
-
                         <!--<uib-tab heading="start/end gcode">-->
-                        <!--<form>-->
                         <!--<curasettings ng-repeat="setting in settings2" content="setting"></curasettings>-->
-                        <!--</form>-->
                         <!--</uib-tab>-->
                     </uib-tabset>
 
-
+                    <!--<h3>Settings Array</h3>-->
+                    <!--<code>{{ settingsTracker | json }}</code>-->
+                    <button class="btn btn-primary" ng-click="importSettings()">import settings</button>
                 </div>
             </div>
 
