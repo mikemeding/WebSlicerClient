@@ -14,48 +14,56 @@
  */
 (function () {
     var app = angular.module("WebSlicer");
+    app.controller('CuraSettingsController', ['$scope', '$http', function ($scope, $http) {
+
+        console.log($scope.content)
+
+    }]);
 
     app.directive('curasettings', function ($compile) {
 
-        var getItemTemplate = function (setting) {
-            var item = "";
-            var itemName = setting.setting;
-            var label = setting.label;
-            var type = setting.type;
-            var defaultSetting = setting.default;
-
-            switch (type) {
-                case "float":
-                    item = "<label for=\"" + itemName + "\">" + label + "</label>";
-                    item = item + "<input value=\'" + defaultSetting + "\' type=\"number\" class=\"form-control\" id=\"" + itemName + "\">";
-                    break;
-                case "int":
-                    item = "<label for=\"" + itemName + "\">" + label + "</label>";
-                    item = item + "<input type=\"number\" class=\"form-control\" id=\"" + itemName + "\">";
-                    break;
-                case "bool":
-                    item = "<label><input type=\"checkbox\"> " + label + "</label>";
-                    break;
-                case "list":
-                    break;
-            }
-            return "<div class=\"form-group\">" + item + "</div>";
-        };
+        //var getItemTemplate = function (setting) {
+        //    var item = "";
+        //    var itemName = setting.setting;
+        //    var label = setting.label;
+        //    var type = setting.type;
+        //    var defaultSetting = setting.default;
+        //
+        //    switch (type) {
+        //        case "float":
+        //            item = "<label for=\"" + itemName + "\">" + label + "</label>";
+        //            item = item + "<input value=\'" + defaultSetting + "\' type=\"number\" class=\"form-control\" id=\"" + itemName + "\">";
+        //            break;
+        //        case "int":
+        //            item = "<label for=\"" + itemName + "\">" + label + "</label>";
+        //            item = item + "<input type=\"number\" class=\"form-control\" id=\"" + itemName + "\">";
+        //            break;
+        //        case "bool":
+        //            item = "<label><input type=\"checkbox\"> " + label + "</label>";
+        //            break;
+        //        case "list":
+        //            break;
+        //    }
+        //    return "<div class=\"form-group\">" + item + "</div>";
+        //};
 
         var linker = function (scope, element, attrs) {
-            //console.log(attrs);
-            //console.log(scope.content);
-            //console.log(getItemTemplate(scope.content));
-            element.html(getItemTemplate(scope.content)).show();
-            $compile(element.contents())(scope);
+            console.log(attrs.settings);
+            //$http.get(attrs.content).success(function (data) {
+            //    console.log(data);
+            //});
+
+            //element.html(getItemTemplate(scope.content)).show();
+            //$compile(element.contents())(scope);
         };
 
         return {
             restrict: 'E',
             link: linker,
             scope: {
-                content: '='
+                settings: '='
             }
+
         };
     });
 

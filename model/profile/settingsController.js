@@ -7,22 +7,28 @@
 
     app.controller("SettingsController", ["$http", "$scope", function ($http, $scope) {
 
-               //parse settings file into large object
-        $http.get('model/profile/settings.json').success(function (data) {
-            $scope.settings = data.settings;
-            //console.log($scope.settings);
-        });
+        $scope.basicSettings = [];
+        $scope.advancedSettings = [];
+        $scope.fineTuneSettings = [];
+        $scope.machineSettings = [];
+        //$scope.startEndGcodeSettings =[];
 
-        $http.get('model/profile/settings1.json').success(function (data) {
-            $scope.settings1 = data;
-            //console.log($scope.settings);
+        /**
+         * PULL ALL SETTINGS FROM CORRESPONDING JSON FILES
+         */
+        var basepath = "model/profile/json/";
+        $http.get(basepath + "basic.json").success(function (data) {
+            $scope.basicSettings = data;
         });
-
-        $http.get('model/profile/settings2.json').success(function (data) {
-            $scope.settings2 = data;
-            //console.log($scope.settings);
+        $http.get(basepath + "advanced.json").success(function (data) {
+            $scope.advancedSettings = data;
         });
-
+        $http.get(basepath + "fine-tune.json").success(function (data) {
+            $scope.fineTuneSettings = data;
+        });
+        $http.get(basepath + "machine.json").success(function (data) {
+            $scope.machineSettings = data;
+        });
 
     }]);
 

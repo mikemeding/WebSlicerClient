@@ -243,7 +243,7 @@
       "default": 0.3,
       "type": "float",
       "category": "Quality",
-      "label": "Initial layer thicknessd (mm)",
+      "label": "Initial layer thickness (mm)",
       "description": "Layer thickness of the bottom layer. A thicker bottom layer makes sticking to the bed easier. Set to 0.0 to have the bottom layer thickness the same as the other layers."
     },
     {
@@ -251,7 +251,7 @@
       "default": 100,
       "type": "float",
       "category": "Quality",
-      "label": "Inital layer line width (%)",
+      "label": "Initial layer line width (%)",
       "description": "Extra width factor for the extrusion on the first layer, on some printers it's good to have wider extrusion on the first layer to get better bed adhesion."
     },
     {

@@ -1,0 +1,203 @@
+[
+  {
+    "setting": "retraction_speed",
+    "default": 40.0,
+    "type": "float",
+    "category": "Retraction",
+    "label": "Speed (mm/s)",
+    "description": "Speed at which the filament is retracted, a higher retraction speed works better. But a very high retraction speed can lead to filament grinding."
+  },
+  {
+    "setting": "retraction_amount",
+    "default": 4.5,
+    "type": "float",
+    "category": "Retraction",
+    "label": "Distance (mm)",
+    "description": "Amount of retraction, set at 0 for no retraction at all. A value of 4.5mm seems to generate good results."
+  },
+  {
+    "setting": "retraction_dual_amount",
+    "default": 16.5,
+    "type": "float",
+    "category": "Retraction",
+    "label": "Dual extrusion switch amount (mm)",
+    "description": "Amount of retraction when switching nozzle with dual-extrusion, set at 0 for no retraction at all. A value of 16.0mm seems to generate good results."
+  },
+  {
+    "setting": "retraction_min_travel",
+    "default": 1.5,
+    "type": "float",
+    "category": "Retraction",
+    "label": "Minimum travel (mm)",
+    "description": "Minimum amount of travel needed for a retraction to happen at all. To make sure you do not get a lot of retractions in a small area."
+  },
+  {
+    "setting": "retraction_combing",
+    "default": 0,
+    "type": "list",
+    "list": [
+      "Off",
+      "All",
+      "No Skin"
+    ],
+    "category": "Retraction",
+    "label": "Enable combing",
+    "description": "Combing is the act of avoiding holes in the print for the head to travel over. If combing is OFF the printer head moves straight from the start point to the end point and it will always retract.  If ALL, enable combing on all surfaces.  If NO SKIN, enable combing on all except skin surfaces."
+  },
+  {
+    "setting": "retraction_minimal_extrusion",
+    "default": 0.02,
+    "type": "float",
+    "category": "Retraction",
+    "label": "Minimal extrusion before retracting (mm)",
+    "description": "The minimal amount of extrusion that needs to be done before retracting again if a retraction needs to happen before this minimal is reached the retraction is ignored.\nThis avoids retracting a lot on the same piece of filament which flattens the filament and causes grinding issues."
+  },
+  {
+    "setting": "retraction_hop",
+    "default": 0.0,
+    "type": "float",
+    "category": "Retraction",
+    "label": "Z hop when retracting (mm)",
+    "description": "When a retraction is done, the head is lifted by this amount to travel over the print. A value of 0.075 works well. This feature has a lot of positive effect on delta towers."
+  },
+  {
+    "setting": "bottom_thickness",
+    "default": 0.3,
+    "type": "float",
+    "category": "Quality",
+    "label": "Initial layer thickness (mm)",
+    "description": "Layer thickness of the bottom layer. A thicker bottom layer makes sticking to the bed easier. Set to 0.0 to have the bottom layer thickness the same as the other layers."
+  },
+  {
+    "setting": "layer0_width_factor",
+    "default": 100,
+    "type": "float",
+    "category": "Quality",
+    "label": "Initial layer line width (%)",
+    "description": "Extra width factor for the extrusion on the first layer, on some printers it's good to have wider extrusion on the first layer to get better bed adhesion."
+  },
+  {
+    "setting": "object_sink",
+    "default": 0.0,
+    "type": "float",
+    "category": "Quality",
+    "label": "Cut off object bottom (mm)",
+    "description": "Sinks the object into the platform, this can be used for objects that do not have a flat bottom and thus create a too small first layer."
+  },
+  {
+    "setting": "overlap_dual",
+    "default": 0.15,
+    "type": "float",
+    "category": "Quality",
+    "label": "Dual extrusion overlap (mm)",
+    "description": "Add a certain amount of overlapping extrusion on dual-extrusion prints. This bonds the different colors together."
+  },
+  {
+    "setting": "travel_speed",
+    "default": 150.0,
+    "type": "float",
+    "category": "Speed",
+    "label": "Travel speed (mm/s)",
+    "description": "Speed at which travel moves are done, a well built Ultimaker can reach speeds of 250mm/s. But some machines might miss steps then."
+  },
+  {
+    "setting": "bottom_layer_speed",
+    "default": 20,
+    "type": "float",
+    "category": "Speed",
+    "label": "Bottom layer speed (mm/s)",
+    "description": "Print speed for the bottom layer, you want to print the first layer slower so it sticks better to the printer bed."
+  },
+  {
+    "setting": "infill_speed",
+    "default": 0.0,
+    "type": "float",
+    "category": "Speed",
+    "label": "Infill speed (mm/s)",
+    "description": "Speed at which infill parts are printed. If set to 0 then the print speed is used for the infill. Printing the infill faster can greatly reduce printing time, but this can negatively affect print quality."
+  },
+  {
+    "setting": "solidarea_speed",
+    "default": 0.0,
+    "type": "float",
+    "category": "Speed",
+    "label": "Top/bottom speed (mm/s)",
+    "description": "Speed at which top/bottom parts are printed. If set to 0 then the print speed is used for the infill. Printing the top/bottom faster can greatly reduce printing time, but this can negatively affect print quality."
+  },
+  {
+    "setting": "inset0_speed",
+    "default": 0.0,
+    "type": "float",
+    "category": "Speed",
+    "label": "Outer shell speed (mm/s)",
+    "description": "Speed at which outer shell is printed. If set to 0 then the print speed is used. Printing the outer shell at a lower speed improves the final skin quality. However, having a large difference between the inner shell speed and the outer shell speed will effect quality in a negative way."
+  },
+  {
+    "setting": "insetx_speed",
+    "default": 0.0,
+    "type": "float",
+    "category": "Speed",
+    "label": "Inner shell speed (mm/s)",
+    "description": "Speed at which inner shells are printed. If set to 0 then the print speed is used. Printing the inner shell faster then the outer shell will reduce printing time. It is good to set this somewhere in between the outer shell speed and the infill/printing speed."
+  },
+  {
+    "setting": "cool_min_layer_time",
+    "default": 5,
+    "type": "float",
+    "category": "Cool",
+    "label": "Minimal layer time (sec)",
+    "description": "Minimum time spent in a layer, gives the layer time to cool down before the next layer is put on top. If the layer will be placed down too fast the printer will slow down to make sure it has spent at least this amount of seconds printing this layer."
+  },
+  {
+    "setting": "fan_enabled",
+    "default": true,
+    "type": "bool",
+    "category": "Cool",
+    "label": "Enable cooling fan",
+    "description": "Enable the cooling fan during the print. The extra cooling from the cooling fan is essential during faster prints."
+  },
+  {
+    "setting": "support_type",
+    "default": 0,
+    "type": "list",
+    "list": [
+      "Grid",
+      "Lines"
+    ],
+    "category": "Support",
+    "label": "Structure type",
+    "description": "The type of support structure.\nGrid is very strong and can come off in 1 piece, however, sometimes it is too strong.\nLines are single walled lines that break off one at a time. Which is more work to remove, but as it is less strong it does work better on tricky prints."
+  },
+  {
+    "setting": "support_angle",
+    "default": 60,
+    "type": "float",
+    "category": "Support",
+    "label": "Overhang angle for support (deg)",
+    "description": "The minimal angle that overhangs need to have to get support. With 90 degree being horizontal and 0 degree being vertical."
+  },
+  {
+    "setting": "support_fill_rate",
+    "default": 15,
+    "type": "int",
+    "category": "Support",
+    "label": "Fill amount (%)",
+    "description": "Amount of infill structure in the support material, less material gives weaker support which is easier to remove. 15% seems to be a good average."
+  },
+  {
+    "setting": "support_xy_distance",
+    "default": 0.7,
+    "type": "float",
+    "category": "Support",
+    "label": "Distance X/Y (mm)",
+    "description": "Distance of the support material from the print, in the X/Y directions.\n0.7mm gives a nice distance from the print so the support does not stick to the print."
+  },
+  {
+    "setting": "support_z_distance",
+    "default": 0.15,
+    "type": "float",
+    "category": "Support",
+    "label": "Distance Z (mm)",
+    "description": "Distance from the top/bottom of the support to the print. A small gap here makes it easier to remove the support but makes the print a bit uglier.\n0.15mm gives a good seperation of the support material."
+  }
+]

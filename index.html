@@ -135,19 +135,39 @@
                     <div class="panel-body">
 
                         <uib-tabset>
-                            <uib-tab heading="shit 1">
+                            <uib-tab heading="basic">
                                 <form>
-                                    <curasettings ng-repeat="setting in settings" content="setting"></curasettings>
+                                    <!--<curasettings ng-repeat="basic in basicSettings" content="model/profile/json/basic.json"></curasettings>-->
+                                    <curasettings settings="basicSettings"></curasettings>
                                 </form>
                             </uib-tab>
 
-                            <uib-tab heading="shit 2">
-                                <form>
-                                    <curasettings ng-repeat="setting in settings2" content="setting"></curasettings>
-                                </form>
-                            </uib-tab>
+                            <!--<uib-tab heading="advanced">-->
+                                <!--<form>-->
+                                    <!--<curasettings ng-repeat="advanced in advancedSettings"-->
+                                                  <!--content="advanced"></curasettings>-->
+                                <!--</form>-->
+                            <!--</uib-tab>-->
+
+                            <!--<uib-tab heading="fine-tune">-->
+                                <!--<form>-->
+                                    <!--<curasettings ng-repeat="fine in fineTuneSettings" content="fine"></curasettings>-->
+                                <!--</form>-->
+                            <!--</uib-tab>-->
+
+                            <!--<uib-tab heading="machine">-->
+                                <!--<form>-->
+                                    <!--<curasettings ng-repeat="machine in machineSettings"-->
+                                                  <!--content="machine"></curasettings>-->
+                                <!--</form>-->
+                            <!--</uib-tab>-->
+
+                            <!--<uib-tab heading="start/end gcode">-->
+                            <!--<form>-->
+                            <!--<curasettings ng-repeat="setting in settings2" content="setting"></curasettings>-->
+                            <!--</form>-->
+                            <!--</uib-tab>-->
                         </uib-tabset>
-
 
 
                     </div>

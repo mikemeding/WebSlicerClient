@@ -175,50 +175,5 @@
     "category": "Machine",
     "label": "Nozzle Size (mm)",
     "description": "The nozzle size is very important, this is used to calculate the line width of the infill, and used to calculate the amount of outside wall lines and thickness for the wall thickness you entered in the print settings."
-  },
-  {
-    "setting": "retraction_speed",
-    "default": 40.0,
-    "type": "float",
-    "category": "Retraction",
-    "label": "Speed (mm/s)",
-    "description": "Speed at which the filament is retracted, a higher retraction speed works better. But a very high retraction speed can lead to filament grinding."
-  },
-  {
-    "setting": "retraction_amount",
-    "default": 4.5,
-    "type": "float",
-    "category": "Retraction",
-    "label": "Distance (mm)",
-    "description": "Amount of retraction, set at 0 for no retraction at all. A value of 4.5mm seems to generate good results."
-  },
-  {
-    "setting": "retraction_dual_amount",
-    "default": 16.5,
-    "type": "float",
-    "category": "Retraction",
-    "label": "Dual extrusion switch amount (mm)",
-    "description": "Amount of retraction when switching nozzle with dual-extrusion, set at 0 for no retraction at all. A value of 16.0mm seems to generate good results."
-  },
-  {
-    "setting": "retraction_min_travel",
-    "default": 1.5,
-    "type": "float",
-    "category": "Retraction",
-    "label": "Minimum travel (mm)",
-    "description": "Minimum amount of travel needed for a retraction to happen at all. To make sure you do not get a lot of retractions in a small area."
-  },
-  {
-    "setting": "retraction_combing",
-    "default": 0,
-    "type": "list",
-    "list": [
-      "Off",
-      "All",
-      "No Skin"
-    ],
-    "category": "Retraction",
-    "label": "Enable combing",
-    "description": "Combing is the act of avoiding holes in the print for the head to travel over. If combing is OFF the printer head moves straight from the start point to the end point and it will always retract.  If ALL, enable combing on all surfaces.  If NO SKIN, enable combing on all except skin surfaces."
   }
 ]

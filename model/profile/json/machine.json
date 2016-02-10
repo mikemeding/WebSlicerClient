@@ -1,0 +1,31 @@
+[
+  {
+    "setting": "wipe_tower",
+    "default": false,
+    "type": "bool",
+    "category": "Dual extrusion",
+    "label": "Wipe & prime tower",
+    "description": "The wipe-tower is a tower printed on every layer when switching between nozzles.\nThe old nozzle is wiped off on the tower before the new nozzle is used to print the 2nd color."
+  },
+  {
+    "setting": "wipe_tower_volume",
+    "default": 15,
+    "type": "float",
+    "category": "Dual extrusion",
+    "label": "Wipe & prime tower volume per layer (mm3)",
+    "description": "The amount of material put in the wipe/prime tower.\nThis is done in volume because in general you want to extrude a\ncertain amount of volume to get the extruder going, independent on the layer height.\nThis means that with thinner layers, your tower gets bigger."
+  },
+  {
+    "setting": "support_dual_extrusion",
+    "default": 0,
+    "type": "list",
+    "list": [
+      "Both",
+      "First extruder",
+      "Second extruder"
+    ],
+    "category": "Support",
+    "label": "Support Dual Extrusion",
+    "description": "Which extruder to use for support material, for break-away support you can use both extruders.\nBut if one of the materials is more expensive then the other you could select an extruder to use for support material. This causes more extruder switches.\nYou can also use the 2nd extruder for soluble support materials."
+  }
+]
