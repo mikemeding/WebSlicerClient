@@ -1,0 +1,45 @@
+<!--OctoPrint STATUS PANEL-->
+<div ng-controller="FilesController">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3>Slicer Controls</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="nav nav-pills nav-stacked">
+
+                <!--file chooser-->
+                <li role="presentation">
+                            <span class="btn btn-default btn-file">
+                                Browse Files<input class="btn btn-file" type="file" file-model="myFile"/>
+                            </span>
+
+                    <button class="btn btn-default" ng-click="uploadFile()">Upload Model</button>
+                </li>
+
+                <!--current file list-->
+                <li role="presentation">
+                    <ul class="list-group" ng-if="modelFiles">
+                        <!--<p> Current working model ID: {{modelFileId}}</p>-->
+                        <li class="list-group-item" ng-click="changeWorkingFile(key)"
+                            ng-repeat="(key, value) in modelFiles">
+                            <p class="text-center">{{value}}</p>
+                        </li>
+                    </ul>
+                </li>
+
+                <li role="presentation">
+                    <button class="btn btn-primary" ng-click="getFileList()">Refresh file list</button>
+
+                    <button ng-if="!$root.busy" class="btn btn-primary" ng-click="slice(modelFileId)">
+                        Slice...
+                    </button>
+                    <i ng-if="$root.busy" class="fa fa-3x fa-cog fa-spin"></i>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+
+
+</div>

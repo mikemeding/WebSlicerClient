@@ -14,7 +14,7 @@
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
 
     <!--css-->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-cosmo.css">
@@ -23,6 +23,10 @@
 
     <!-- MAIN CONTROLLER AND CONFIG -->
     <script src="app.js"></script>
+
+    <!--FILE CONTROLS-->
+    <script src="model/files/filesController.js"></script>
+    <script src="model/files/filesDirective.js"></script>
 
     <!--SETTINGS-->
     <script src="model/profile/settingsController.js"></script>
@@ -34,13 +38,10 @@
     <script src="model/octoprint/octoprintDirective.js"></script>
     <script src="model/octoprint/octoprintController.js"></script>
 
-    <!--CRAP THAT NEEDS TO GO-->
-    <script src="deprecated.js"></script>
-
 </head>
-<body>
+<body ng-controller="Main">
 
-<div class="container" ng-controller="Deprecated">
+<div class="container" ng-controller="SettingsController">
     <div class="row">
         <div class="col-lg-6 col-lg-offset-3">
             <h1 class="title"><img src="img/logo22.svg" width="150px">{{title}}</h1>
@@ -50,13 +51,13 @@
         <div class="col-lg-6 col-lg-offset-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4>Login</h4>
+                    <h3>Login</h3>
                 </div>
                 <div class="panel-body">
                     <form>
                         <div class="form-group">
                             <label for="clientId">Client ID</label>
-                            <input class="form-control" type="text" id="clientId" ng-model="clientId">
+                            <input class="form-control" type="text" id="clientId" ng-model="$root.clientId">
                             <button class="btn btn-warning" ng-click="generateClientId()">generate new id</button>
                         </div>
                     </form>
@@ -69,51 +70,7 @@
 
         <!--CONTROLS-->
         <div class="col-lg-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4>Slicer Controls</h4>
-                </div>
-                <div class="panel-body">
-                    <ul class="nav nav-pills nav-stacked">
-
-                        <!--file chooser-->
-                        <li role="presentation">
-                            <span class="btn btn-default btn-file">
-                                Browse Files<input class="btn btn-file" type="file" file-model="myFile"/>
-                            </span>
-                        </li>
-                        <li role="presentation">
-                            <button class="btn btn-default" ng-click="uploadFile()">Upload Model</button>
-                        </li>
-
-                        <!--current file list-->
-                        <li role="presentation">
-                            <ul class="list-group">
-                                <p> Current working model ID: {{modelFileId}}</p>
-                                <li class="list-group-item" ng-click="changeWorkingFile(key)"
-                                    ng-repeat="(key, value) in modelFiles">
-                                    <p class="text-center">{{value}}</p>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li role="presentation">
-                            <button class="btn btn-primary" ng-click="getFileList()">get files</button>
-                        </li>
-
-                        <!--settings-->
-                        <li role="presentation">
-                            <button class="btn btn-default" ng-click="importSettings()">Upload Settings</button>
-                        </li>
-                        <li role="presentation">
-                            <button class="btn btn-primary" ng-click="slice(modelFileId)">
-                                Slice...
-                            </button>
-                        </li>
-                    </ul>
-
-                </div>
-            </div>
+            <filecontrols></filecontrols>
         </div>
 
         <div class="col-lg-6">
@@ -129,7 +86,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4>Printer Settings</h4>
+                    <h3>Printer Settings</h3>
                 </div>
                 <div class="panel-body">
 
@@ -146,26 +103,25 @@
                         <uib-tab heading="machine">
                             <curasettings src="model/profile/json/machine.json"></curasettings>
                         </uib-tab>
-                        <!--<uib-tab heading="start/end gcode">-->
-                        <!--<curasettings ng-repeat="setting in settings2" content="setting"></curasettings>-->
-                        <!--</uib-tab>-->
+                        <uib-tab heading="start/end gcode">
+                            <curasettings src="model/profile/json/start-end-gcode.json"></curasettings>
+                        </uib-tab>
                     </uib-tabset>
 
-                    <!--<h3>Settings Array</h3>-->
-                    <!--<code>{{ settingsTracker | json }}</code>-->
-                    <button class="btn btn-primary" ng-click="importSettings()">import settings</button>
                 </div>
             </div>
 
         </div>
-        <div class="col-lg-6">
+
+        <!--GCODE OUTPUT PANEL-->
+        <div class="col-lg-6" ng-if="gcode.gcode">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4>Gcode Output Window</h4>
+                    <h3>Gcode Output Window</h3>
                     <a ng-href="{{gcodeUrl}}" ng-click="downloadGcode(gcode.gcode)">download gcode</a>
                 </div>
                 <div class="panel-body">
-                    <textarea cols="30" rows="100" ng-model="gcode.gcode" class="form-control"></textarea>
+                    <textarea cols="30" rows="50" ng-model="gcode.gcode" class="form-control"></textarea>
                 </div>
             </div>
         </div>

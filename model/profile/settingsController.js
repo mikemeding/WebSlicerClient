@@ -11,22 +11,22 @@
          * Upload the settings as a formatted JSONObject to the server for slicing
          */
         $scope.importSettings = function () {
-            console.log(buildSettingsObject());
-            //$http({
-            //    method: 'POST',
-            //    url: baseUrl + "/importSettings/" + $scope.clientId,
-            //    headers: {
-            //        'Content-Type': 'application/json'
-            //    },
-            //    data: buildSettingsObject()
-            //}).then(function successCallback(response) {
-            //    console.log(response);
-            //}, function errorCallback(response) {
-            //    console.error(response);
-            //});
+            var data = buildSettingsObject();
+            console.log(data);
+            $http({
+                method: 'POST',
+                url: $rootScope.baseUrl + "/importSettings/" + $scope.clientId,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: data
+            }).then(function successCallback(response) {
+                console.log(response);
+            }, function errorCallback(response) {
+                console.error(response);
+            });
         };
 
-        // this is just a formality it seems
         function buildSettingsObject() {
             var overrides = {};
 
@@ -35,7 +35,7 @@
                 //console.log("obj." + prop + " = " + $rootScope.settingsTracker[prop]);
                 var temp = {};
                 for (var item in $rootScope.settingsTracker[prop]) {
-                    temp[$rootScope.settingsTracker[prop][item].setting] = $rootScope.settingsTracker[prop][item].default;
+                    temp[$rootScope.settingsTracker[prop][item].setting] = {"default": $rootScope.settingsTracker[prop][item].default};
                 }
 
                 //console.log(temp);

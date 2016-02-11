@@ -1,5 +1,8 @@
 <form>
     <div class="form-group" ng-repeat="item in settings">
+        <!--<div ng-if="$index !=0">-->
+        <h4 ng-if="settings[$index].category !== settings[$index-1].category"><bold>{{settings[$index].category}}</bold></h4>
+        <!--</div>-->
         <!--styling for float type input-->
         <div ng-if="settings[$index].type === 'float' || settings[$index].type === 'int'">
             <label for="{{settings[$index].setting}}">{{settings[$index].label}}</label>
@@ -17,6 +20,11 @@
             <select class="form-control" id="settings[$index].setting" ng-model="settings[$index].default">
                 <option ng-repeat="option in settings[$index].list">{{option}}</option>
             </select>
+        </div>
+        <div ng-if="settings[$index].type === 'textarea'">
+            <label for="{{settings[$index].setting}}">{{settings[$index].label}}</label>
+            <textarea rows="20" class="form-control" id="{{settings[$index].setting}}"
+                      ng-model="settings[$index].default"></textarea>
         </div>
 
     </div>
