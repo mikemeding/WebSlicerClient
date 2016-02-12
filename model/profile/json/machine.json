@@ -1,5 +1,37 @@
 [
   {
+    "setting": "machine_width",
+    "default": 180,
+    "type": "float",
+    "category": "Machine Size",
+    "label": "Machine Width",
+    "description": "blah blah blah"
+  },
+  {
+    "setting": "machine_depth",
+    "default": 180,
+    "type": "float",
+    "category": "Machine Size",
+    "label": "Machine depth",
+    "description": "..."
+  },
+  {
+    "setting": "machine_height",
+    "default": 150,
+    "type": "float",
+    "category": "Machine Size",
+    "label": "Machine Height",
+    "description": "..."
+  },
+  {
+    "setting": "machine_heated_bed",
+    "default": true,
+    "type": "bool",
+    "category": "Machine Size",
+    "label": "Enable heated bed?",
+    "description": "..."
+  },
+  {
     "setting": "wipe_tower",
     "default": false,
     "type": "bool",

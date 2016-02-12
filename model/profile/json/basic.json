@@ -56,7 +56,7 @@
     "description": "Temperature used for printing. Set at 0 to pre-heat yourself.\nFor PLA a value of 210C is usually used.\nFor ABS a value of 230C or higher is required."
   },
   {
-    "setting": "print_bed_temperature",
+    "setting": "material_bed_temperature",
     "default": 70,
     "type": "int",
     "category": "Speed and Temperature",
@@ -90,7 +90,7 @@
     "description": "Different options that help in preventing corners from lifting due to warping.\nBrim adds a single layer thick flat area around your object which is easy to cut off afterwards, and it is the recommended option.\nRaft adds a thick raster below the object and a thin interface between this and your object.\n(Note that enabling the brim or raft disables the skirt)"
   },
   {
-    "setting": "filament_diameter",
+    "setting": "material_diameter",
     "default": 1.75,
     "type": "float",
     "category": "Filament",
@@ -98,7 +98,7 @@
     "description": "Diameter of your filament, as accurately as possible.\nIf you cannot measure this value you will have to calibrate it, a higher number means less extrusion, a smaller number generates more extrusion."
   },
   {
-    "setting": "filament_flow",
+    "setting": "material_flow",
     "default": 100,
     "type": "float",
     "category": "Filament",
@@ -106,7 +106,7 @@
     "description": "Flow compensation, the amount of material extruded is multiplied by this value"
   },
   {
-    "setting": "nozzle_size",
+    "setting": "machine_nozzle_size",
     "default": 0.4,
     "type": "float",
     "category": "Machine",
