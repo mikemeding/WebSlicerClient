@@ -88,7 +88,7 @@
              */
 
             var overrideBlackList = [
-                "print_temperature",
+                "material_print_temperature",
                 "machine_start_gcode",
                 "machine_end_gcode",
                 "machine_width",

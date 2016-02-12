@@ -48,7 +48,7 @@
     "description": "Speed at which printing happens. A well adjusted Ultimaker can reach 150mm/s, but for good quality prints you want to print slower. Printing speed depends on a lot of factors. So you will be experimenting with optimal settings for this."
   },
   {
-    "setting": "print_temperature",
+    "setting": "material_print_temperature",
     "default": 210,
     "type": "int",
     "category": "Speed and Temperature",
