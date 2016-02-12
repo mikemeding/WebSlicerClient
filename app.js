@@ -61,20 +61,32 @@
             if (modelId) {
                 $rootScope.busy = true;
 
-                // send slice request
-                $http({
-                    method: 'POST',
-                    url: $rootScope.baseUrl + "/slice/" + $rootScope.clientId + "/" + modelId
-                }).then(function successCallback(response) {
-                    // capture our gcode as a response.
-                    console.log(response);
-                    $scope.gcode = response.data;
-                    $rootScope.busy = false;
+                // run import settings to update settings on server BEFORE SLICING
+                $rootScope.importSettings()
 
-                }, function errorCallback(response) {
-                    console.error(response);
-                    $rootScope.busy = false;
-                });
+                    .then(function successCallback(response) {
+                        console.log(response);
+
+                        // SEND SLICE REQUEST!
+                        $http({
+                            method: 'POST',
+                            url: $rootScope.baseUrl + "/slice/" + $rootScope.clientId + "/" + modelId
+                        }).then(function successCallback(response) {
+                            // capture our gcode as a response.
+                            console.log(response);
+                            $scope.gcode = response.data;
+                            $rootScope.busy = false;
+
+                        }, function errorCallback(response) {
+                            console.error(response);
+                            $rootScope.busy = false;
+                        });
+
+                    }, function errorCallback(response) {
+                        console.error(response);
+                        console.error("import settings before slice");
+                    });
+
             } else {
                 console.error("model or settings id missing");
             }
