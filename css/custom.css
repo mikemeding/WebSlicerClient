@@ -7,6 +7,6 @@
     background-color: #000000;
 }
 
-p {
+p,a {
     cursor: pointer;
 }
