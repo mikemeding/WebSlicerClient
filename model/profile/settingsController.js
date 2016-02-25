@@ -37,6 +37,7 @@
              */
 
             var overrideBlackList = [
+                "infill_line_distance",
                 "wall_line_count",
                 "machine_start_gcode",
                 "machine_end_gcode",
@@ -84,6 +85,10 @@
                         angular.extend(overrides, temp);
                     }
                 }
+
+                // Fixed settings that must exist
+                angular.extend(overrides, {"infill_sparse_density":{"default":100.0}});
+
             }
 
             var header = {

@@ -32,11 +32,11 @@
     "description": "This controls the thickness of the bottom and top layers, the amount of solid layers put down is calculated by the layer thickness and this value.\nHaving this value a multiple of the layer thickness makes sense. And keep it near your wall thickness to make an evenly strong part."
   },
   {
-    "setting": "fill_density",
-    "default": 20,
+    "setting": "infill_line_distance",
+    "default": 0.20,
     "type": "float",
     "category": "Fill",
-    "label": "Fill Density (%)",
+    "label": "Fill Density (%) Max = 1.0",
     "description": "This controls how densely filled the insides of your print will be. For a solid part use 100%, for an empty part use 0%. A value around 20% is usually enough.\nThis won't affect the outside of the print and only adjusts how strong the part becomes."
   },
   {
