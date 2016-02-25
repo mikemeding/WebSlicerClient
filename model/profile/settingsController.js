@@ -24,71 +24,20 @@
 
         function buildSettingsObject() {
             /*
-             NORMAL SETTINGS
-             Trying to override unknown setting solid_layer_thickness.
-             Trying to override unknown setting fill_density.
-             Trying to override unknown setting print_speed.
-             Trying to override unknown setting print_temperature.
-             Trying to override unknown setting print_bed_temperature.
-             Trying to override unknown setting support.
-             Trying to override unknown setting platform_adhesion.
-             Trying to override unknown setting filament_diameter.
-             Trying to override unknown setting filament_flow.
-             Trying to override unknown setting nozzle_size.
-             Trying to override unknown setting retraction_dual_amount.
-             Trying to override unknown setting retraction_minimal_extrusion.
-             Trying to override unknown setting layer0_width_factor.
-             Trying to override unknown setting object_sink.
-             Trying to override unknown setting overlap_dual.
-             Trying to override unknown setting travel_speed.
-             Trying to override unknown setting bottom_layer_speed.
-             Trying to override unknown setting infill_speed.
-             Trying to override unknown setting solidarea_speed.
-             Trying to override unknown setting inset0_speed.
-             Trying to override unknown setting insetx_speed.
-             Trying to override unknown setting fan_enabled.
-             Trying to override unknown setting support_fill_rate.
-             Trying to override unknown setting fan_full_height.
-             Trying to override unknown setting fan_speed.
-             Trying to override unknown setting fan_speed_max.
-             Trying to override unknown setting cool_min_feedrate.
-             Trying to override unknown setting cool_head_lift.
-             Trying to override unknown setting solid_top.
-             Trying to override unknown setting solid_bottom.
-             Trying to override unknown setting fill_overlap.
-             Trying to override unknown setting perimeter_before_infill.
-             Trying to override unknown setting spiralize.
-             Trying to override unknown setting simple_mode.
-             Trying to override unknown setting raft_line_spacing.
-             Trying to override unknown setting raft_base_linewidth.
-             Trying to override unknown setting raft_interface_linewidth.
-             Trying to override unknown setting raft_airgap_all.
-             Trying to override unknown setting raft_surface_linewidth.
-             Trying to override unknown setting fix_horrible_union_all_type_a.
-             Trying to override unknown setting fix_horrible_union_all_type_b.
-             Trying to override unknown setting fix_horrible_use_open_bits.
-             Trying to override unknown setting fix_horrible_extensive_stitching.
-             Trying to override unknown setting ooze_shield.
-             Trying to override unknown setting wipe_tower.
-             Trying to override unknown setting wipe_tower_volume.
-             Trying to override unknown setting support_dual_extrusion.
-
-             OVERRIDES ONLY SETTINGS
-             machine_nozzle_offset_y
-             machine_nozzle_offset_x
-             machine_extruder_start_code
-             machine_extruder_end_code
-             switch_extruder_retraction_amount
-             switch_extruder_retraction_speed
-             switch_extruder_prime_speed
-             machine_use_extruder_offset_to_offset_coords
-             prime_tower_flow
-             prime_tower_line_width
-             speed_prime_tower
+             CONFIRMED WORKING SETTINGS
+             "wall_line_count",
+             "machine_start_gcode",
+             "machine_end_gcode",
+             "machine_width",
+             "machine_depth",
+             "machine_height",
+             "material_print_temperature",
+             "material_bed_temperature",
+             "material_diameter",
              */
 
             var overrideBlackList = [
-                "material_print_temperature",
+                "wall_line_count",
                 "machine_start_gcode",
                 "machine_end_gcode",
                 "machine_width",

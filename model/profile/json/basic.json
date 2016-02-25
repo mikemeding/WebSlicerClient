@@ -8,11 +8,11 @@
     "description": "Layer height in millimeters.\nThis is the most important setting to determine the quality of your print. Normal quality prints are 0.1mm, high quality is 0.06mm. You can go up to 0.25mm with an Ultimaker for very fast prints at low quality."
   },
   {
-    "setting": "wall_thickness",
-    "default": 0.8,
+    "setting": "wall_line_count",
+    "default": 2,
     "type": "float",
     "category": "Quality",
-    "label": "Shell Thickness (mm)",
+    "label": "Shell Thickness In Lines",
     "description": "Thickness of the outside shell in the horizontal direction.\nThis is used in combination with the nozzle size to define the number\nof perimeter lines and the thickness of those perimeter lines."
   },
   {

@@ -5,7 +5,6 @@
     var app = angular.module("WebSlicer");
     app.controller("OctoprintController", ["$http", "$scope", "OctoprintService", function ($http, $scope, OctoprintService) {
 
-        //TODO: these need to be refactored
         // form collection scope variables
         $scope.url = "";
         $scope.port = "";
@@ -93,7 +92,7 @@
         };
 
         /**
-         *
+         * Get a basic status message with the current printer temps and connection status
          */
         $scope.getOctoprintStatus = function () {
             OctoprintService.getPrinterInfo($scope.connectedAddress, $scope.apiKey)
@@ -107,6 +106,20 @@
                     APIError(response, "getOctoprintStatus");
                 });
         };
+
+        /**
+         * Send the current gcode file to the octoprint server
+         */
+        $scope.postOctoprintFile = function () {
+            console.log($rootScope.gcode);
+
+            OctoprintService.uploadFile($scope.connectedAddress, $scope.apiKey, $rootScope.gcode)
+                .then(function successCallback(response) {
+                    console.log(response);
+                }, function errorCallback(response) {
+                    APIError(response, "postOctoprintFile");
+                });
+        }
 
 
     }]);

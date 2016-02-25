@@ -60,12 +60,28 @@
 
         /**
          * Upload a new file to the octoprint server
+         *
+         * TODO: This need to be tested on an actual octoprint server
          * @param url
          * @param apiKey
          * @param file
          */
         this.uploadFile = function (url, apiKey, file) {
-            console.error("functionality does not exist yet. uploadFile()");
+            console.log('file is ');
+            console.dir(file);
+
+            // append form data (file parts) to request
+            var fd = new FormData();
+            fd.append('file', file);
+
+            // multipart/form-data post request
+            return $http.post(url, fd, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'x-api-key':apiKey
+                }
+            });
+
         };
 
         /**
