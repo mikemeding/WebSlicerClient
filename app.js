@@ -78,9 +78,8 @@
                             $scope.gcode = response.data;
                             $rootScope.busy = false;
 
-
-                            // pass gcode to visualizer
-                            GCODE.gCodeReader.loadString($scope.gcode);
+                            // render our gcode in the 2D viewer
+                            $rootScope.render(response.data.gcode);
 
                         }, function errorCallback(response) {
                             console.error(response);
