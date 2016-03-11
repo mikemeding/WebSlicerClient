@@ -38,6 +38,13 @@
     <script src="model/octoprint/octoprintDirective.js"></script>
     <script src="model/octoprint/octoprintController.js"></script>
 
+    <!--VISUALIZER-->
+    <script src="viewer/lib/zlib.min.js"></script>
+    <script src="viewer/gcodeFactory.js"></script>
+    <script src="viewer/renderFactory.js"></script>
+    <script src="viewer/viewer.js"></script>
+
+
 </head>
 <body ng-controller="Main">
 
@@ -125,6 +132,21 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!--2D GCODE VISUALIZER-->
+    <div class="row" ng-controller="gcodeController">
+
+        <canvas id="canvas" width="650" height="620"></canvas>
+        <form>
+            <div class="form-group">
+                <label for="layerNumber">layerNumber</label>
+                <input type="number" id="layerNumber" ng-model="layerNumber">
+                <label for="progress">progress</label>
+                <input type="number" id="progress" ng-model="progress">
+            </div>
+        </form>
+
     </div>
 
 </div>

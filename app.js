@@ -50,6 +50,7 @@
             //$window.open("data:application/json;charset=utf-8," + encodeURIComponent(gcode));
         };
 
+
         /**
          * The main slice function. This will only operate if the client has both uploaded a settings file and a model file.
          * Both of these files will be given an id that the client must track in order to slice a file properly.
@@ -76,6 +77,10 @@
                             console.log(response);
                             $scope.gcode = response.data;
                             $rootScope.busy = false;
+
+
+                            // pass gcode to visualizer
+                            GCODE.gCodeReader.loadString($scope.gcode);
 
                         }, function errorCallback(response) {
                             console.error(response);
