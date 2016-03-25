@@ -14,11 +14,13 @@
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
 
     <!--css-->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-cosmo.css">
     <!--<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">-->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-cosmo.css">
     <link rel="stylesheet" href="css/custom.css"/>
 
     <!-- MAIN CONTROLLER AND CONFIG -->
@@ -77,12 +79,83 @@
 
         <!--CONTROLS-->
         <div class="col-lg-6">
-            <filecontrols></filecontrols>
+
+            <!--<filecontrols></filecontrols>-->
+            <div ng-controller="FilesController">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3>Slicer Controls</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="nav nav-pills nav-stacked">
+
+                            <!--file chooser-->
+                            <li role="presentation">
+
+                                <button class="btn btn-primary" type="file" ngf-select="uploadFile($file,$invalidFiles)"
+                                        ngf-max-height="1000" ngf-max-size="2MB">
+                                    Upload File
+                                </button>
+
+                                <div ng-show="f.progress >= 0">
+                                    <h3>{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}</h3>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{f.progress}}"
+                                             aria-valuemin="0"
+                                             aria-valuemax="100" style="width: {{f.progress}}%;">
+                                            <!--<div class="progress-bar" role="progressbar" aria-valuenow="{{f.progress}}" aria-valuemin="0"-->
+                                            <!--aria-valuemax="100">-->
+                                            {{f.progress}}% Complete
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </li>
+
+                            <!--current file list-->
+                            <li role="presentation" ng-if="$root.clientId">
+                                <p>{{modelFileId}}</p>
+
+                                <table class="table table-hover table-condensed">
+                                    <tbody>
+
+                                    <tr ng-repeat="item in modelFiles">
+                                        <td>
+                                            {{item.value}}
+                                            <button ng-if="!$root.busy" class="btn btn-primary btn-sm pull-right"
+                                                    ng-click="$root.slice(item.key)">
+                                                Slice
+                                            </button>
+                                            <i ng-if="$root.busy" class="fa fa-3x fa-cog fa-spin pull-right"></i>
+
+
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </li>
+
+                            <!--slice button-->
+                            <li role="presentation">
+                                <!--<button class="btn btn-primary" ng-click="getFileList()">Refresh file list</button>-->
+
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </div>
+
+
+            </div>
         </div>
 
-        <div class="col-lg-6">
-            <octoprint></octoprint>
-        </div>
+        <!--<div class="col-lg-6">-->
+        <!--<octoprint></octoprint>-->
+        <!--</div>-->
 
     </div>
 
@@ -135,19 +208,27 @@
     </div>
 
     <!--2D GCODE VISUALIZER-->
-    <div class="row" ng-controller="gcodeController" >
-
-        <canvas id="canvas" width="650" height="620"></canvas>
-        <form>
-            <div class="form-group">
-                <label for="layerNumber">layerNumber</label>
-                <input type="number" id="layerNumber" ng-model="layerNumber">
-                <label for="progress">progress</label>
-                <input type="number" id="progress" ng-model="progress">
+    <div class="row" ng-controller="gcodeController" ng-show="gcode.gcode">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Gcode Visualizer</h3>
             </div>
-        </form>
-
+            <div class="panel-body">
+                <canvas id="canvas" width="650" height="620"></canvas>
+                <form>
+                    <div class="form-group">
+                        <label for="layerNumber">layerNumber</label>
+                        <input type="number" id="layerNumber" ng-model="layerNumber">
+                        <label for="progress">progress</label>
+                        <input type="number" id="progress" ng-model="progress">
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
+
+
+</div>
 
 </div>
 

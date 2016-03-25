@@ -9,28 +9,41 @@
 
                 <!--file chooser-->
                 <li role="presentation">
-                            <span class="btn btn-default btn-file">
-                                Browse Files<input class="btn btn-file" type="file" file-model="myFile"/>
-                            </span>
 
-                    <button class="btn btn-default" ng-click="uploadFile()">Upload Model</button>
+                    <button class="btn btn-primary" type="file" ngf-select="uploadFile($file,$invalidFiles)"
+                            ngf-max-height="1000" ngf-max-size="2MB">
+                        Select File
+                    </button>
+
+                    <div ng-show="f.progress >= 0">
+                        <h3>{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}</h3>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="{{f.progress}}"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100" style="width: {{f.progress}}%;">
+                                <!--<div class="progress-bar" role="progressbar" aria-valuenow="{{f.progress}}" aria-valuemin="0"-->
+                                <!--aria-valuemax="100">-->
+                                {{f.progress}}% Complete
+                            </div>
+                        </div>
+                    </div>
+
                 </li>
 
                 <!--current file list-->
-                <li role="presentation">
-                    <ul class="list-group" ng-if="modelFiles">
-                        <!--<p> Current working model ID: {{modelFileId}}</p>-->
-                        <li class="list-group-item" ng-click="changeWorkingFile(key)"
-                            ng-repeat="(key, value) in modelFiles">
-                            <p class="text-center">{{value}}</p>
-                        </li>
-                    </ul>
+                <li role="presentation" ng-if="$root.clientId">
+                    <p>{{modelFileId}}</p>
+                    <select id="repeatSelect" ng-model="modelFileId"
+                        ng-options="item.value for item in modelFiles track by item.key">
+                    </select>
                 </li>
 
+                <!--slice button-->
                 <li role="presentation">
-                    <button class="btn btn-primary" ng-click="getFileList()">Refresh file list</button>
+                    <!--<button class="btn btn-primary" ng-click="getFileList()">Refresh file list</button>-->
 
-                    <button ng-if="!$root.busy" class="btn btn-primary" ng-click="slice(modelFileId)">
+                    <button ng-show="$root.clientId" ng-if="!$root.busy" class="btn btn-primary"
+                            ng-click="doSlice(modelFileId)">
                         Slice...
                     </button>
                     <i ng-if="$root.busy" class="fa fa-3x fa-cog fa-spin"></i>

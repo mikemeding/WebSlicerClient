@@ -2,7 +2,7 @@
  * Created by mike on 9/25/15.
  */
 (function () {
-    var app = angular.module("WebSlicer", ["ui.router", "ui.bootstrap", "ngAnimate"]);
+    var app = angular.module("WebSlicer", ["ui.router", "ui.bootstrap", "ngAnimate", "ngFileUpload"]);
 
     app.controller("Main", ["$http", "$scope", "$window", "$rootScope", function ($http, $scope, $window, $rootScope) {
 
@@ -56,9 +56,8 @@
          * Both of these files will be given an id that the client must track in order to slice a file properly.
          *
          * @param modelId
-         * @param settingsId
          */
-        $scope.slice = function (modelId) {
+        $rootScope.slice = function (modelId) {
             if (modelId) {
                 $rootScope.busy = true;
 
