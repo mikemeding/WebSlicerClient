@@ -75,10 +75,11 @@
             fd.append('file', file);
 
             // multipart/form-data post request
-            return $http.post(url, fd, {
+            var uploadUrl = 'http://' + url + '/api/files/local';
+            return $http.post(uploadUrl, fd, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    'x-api-key':apiKey
+                    'x-api-key': apiKey
                 }
             });
 

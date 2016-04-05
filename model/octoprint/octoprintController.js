@@ -3,7 +3,7 @@
  */
 (function () {
     var app = angular.module("WebSlicer");
-    app.controller("OctoprintController", ["$http", "$scope", "OctoprintService", function ($http, $scope, OctoprintService) {
+    app.controller("OctoprintController", ["$http", "$scope", "$rootScope", "OctoprintService", function ($http, $scope, $rootScope, OctoprintService) {
 
         // form collection scope variables
         $scope.url = "";
