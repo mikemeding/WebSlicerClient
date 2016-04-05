@@ -6,6 +6,11 @@
 
     app.controller("Main", ["$http", "$scope", "$window", "$rootScope", function ($http, $scope, $window, $rootScope) {
 
+        // enable all bootstrap tooltips
+        //$(function () {
+        //    $('[data-toggle="tooltip"]').tooltip()
+        //});
+
         // the main servers base url for making REST calls
         $rootScope.baseUrl = "http://localhost:8080/WebSlicer/slicer";
         $rootScope.clientId = "";

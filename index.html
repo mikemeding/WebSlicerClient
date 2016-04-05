@@ -195,13 +195,16 @@
 
         <!--GCODE OUTPUT PANEL-->
         <div class="col-lg-6" ng-if="gcode.gcode">
-            <div class="panel panel-default">
+            <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3>Gcode Output Window</h3>
                     <a ng-href="{{gcodeUrl}}" ng-click="downloadGcode(gcode.gcode)">download gcode</a>
                 </div>
                 <div class="panel-body">
-                    <textarea cols="30" rows="50" ng-model="gcode.gcode" class="form-control"></textarea>
+                    <button class="btn btn-sm" ng-click="showGcode = !showGcode" data-toggle="tooltip" data-placement="bottom" title="WARNING! This may freeze browser!">press to view gcode</button>
+                    <textarea ng-if="showGcode" cols="30" rows="50" ng-model="gcode.gcode"
+                              class="form-control"></textarea>
+
                 </div>
             </div>
         </div>
@@ -209,7 +212,7 @@
 
     <!--2D GCODE VISUALIZER-->
     <div class="row" ng-controller="gcodeController" ng-show="gcode.gcode">
-        <div class="panel panel-default">
+        <div class="panel panel-success">
             <div class="panel-heading">
                 <h3>Gcode Visualizer</h3>
             </div>
@@ -227,6 +230,9 @@
         </div>
     </div>
 
+    <div class="footer row">
+        <p class="text-center">&copy; Michael U.B. Meding 2016</p>
+    </div>
 
 </div>
 

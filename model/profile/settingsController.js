@@ -7,6 +7,8 @@
 
     app.controller("SettingsController", ["$http", "$scope", "$rootScope", function ($http, $scope, $rootScope) {
 
+        $scope.showGcode = false;
+
         /**
          * Upload the settings as a formatted JSONObject to the server for slicing
          */
